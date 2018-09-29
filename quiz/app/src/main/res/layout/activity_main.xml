@@ -10,7 +10,7 @@
         android:id="@+id/imageView3"
         android:layout_width="354dp"
         android:layout_height="356dp"
-        app:srcCompat="@drawable/spider_man_PNG90"
+        app:srcCompat="@drawable/spider"
         tools:layout_editor_absoluteX="15dp"
         tools:layout_editor_absoluteY="16dp" />
 
