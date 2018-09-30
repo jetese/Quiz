@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Quiz</string>
+    <string-array name="bad_guys">
+        <item>Doctor Octopus</item>
+        <item>Rhino</item>
+        <item>Electro</item>
+        <item>Venom</item>
+    </string-array>
 </resources>
