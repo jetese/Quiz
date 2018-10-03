@@ -226,6 +226,10 @@ public class FirstQuestion extends AppCompatActivity {
                 lv = (ListView) findViewById(R.id.listview_question);
                 lv.setAdapter(new CustomListView(this, R.layout.list_view, texts, images));
                 break;
+            case 5:
+                Intent puntIntent = new Intent(getBaseContext(), Puntuation.class);
+                puntIntent.putExtra("PUNTUATION", puntuacion);
+                startActivity(puntIntent);
             default:
                 System.out.println("Fallo");
         }
