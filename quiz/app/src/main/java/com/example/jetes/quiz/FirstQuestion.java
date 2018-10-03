@@ -58,7 +58,7 @@ public class FirstQuestion extends AppCompatActivity {
             int radiobuttonid = rg.getCheckedRadioButtonId();
             rb = (RadioButton) findViewById(radiobuttonid);
             String nombre = rb.getText().toString();
-            if(nombre.equals("Lanrzar Telarañas")  ) {
+            if(nombre.equals("Lanzar Telarañas")  ) {
                 increasePunt(3);
             }
             else{
