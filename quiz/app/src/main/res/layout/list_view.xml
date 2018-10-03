@@ -15,6 +15,7 @@
 
     <Button
         android:id="@+id/list_button"
+        android:onClick="continuar"
         android:layout_width="260dp"
         android:layout_height="102dp"
         android:layout_marginTop="3dp"

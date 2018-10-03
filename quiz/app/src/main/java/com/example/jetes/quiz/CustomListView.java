@@ -24,10 +24,12 @@ import java.util.List;
 public class CustomListView extends ArrayAdapter<String> {
     private int layout;
     private List<String> mObjects;
-    public CustomListView(Context context, int resource, List<String> objects) {
+    private List<Integer> mImages;
+    public CustomListView(Context context, int resource, List<String> objects, List<Integer> images) {
         super(context, resource, objects);
         layout = resource;
         mObjects = objects;
+        mImages = images;
     }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -37,17 +39,13 @@ public class CustomListView extends ArrayAdapter<String> {
             convertView = inflater.inflate(layout, parent, false);
             ViewHolder viewHolder = new ViewHolder();
             viewHolder.thumbnail = (ImageView) convertView.findViewById(R.id.list_image);
-            viewHolder.thumbnail.setImageResource(R.drawable.civil_war_suit);
+            viewHolder.thumbnail.setImageResource(mImages.get(position));
             viewHolder.button = (Button) convertView.findViewById(R.id.list_button);
+            viewHolder.button.setText(getItem(position));
             convertView.setTag(viewHolder);
         }
         mainViewholder = (ViewHolder) convertView.getTag();
-        mainViewholder.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "Button was clicked for list item " + position, Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
         return convertView;
     }

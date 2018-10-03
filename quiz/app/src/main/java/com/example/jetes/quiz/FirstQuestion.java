@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -56,14 +57,12 @@ public class FirstQuestion extends AppCompatActivity {
         if (pregunta == 0){
             int radiobuttonid = rg.getCheckedRadioButtonId();
             rb = (RadioButton) findViewById(radiobuttonid);
-            String nombre = rb.getText().toString();//getResources().getResourceEntryName(radiobuttonid);
+            String nombre = rb.getText().toString();
             if(nombre.equals("Lanrzar Telarañas")  ) {
                 increasePunt(3);
-                //Toast.makeText(getBaseContext(),"¡Has acertado! Tu puntuación aumenta en 3",Toast.LENGTH_LONG).show();
             }
             else{
                 decreasePunt(2);
-                //Toast.makeText(getBaseContext(),"Has fallado. Tu puntuación se reduce en 2",Toast.LENGTH_LONG).show();
             }
 
 
@@ -92,6 +91,38 @@ public class FirstQuestion extends AppCompatActivity {
                     decreasePunt(2);
                 }
             }
+        }
+        
+        if(pregunta ==3){
+            System.out.println("Pregunta 3");
+            View b;
+            b = findViewById(R.id.question3);
+            b.setVisibility(View.GONE);
+            Button but = (Button) v;
+            if(but.getText() == "Tom Cruise"){
+                increasePunt(3);
+            }
+            else{
+                decreasePunt(2);
+            }
+            acceptChange = false;
+            nextQuestion(v);
+        }
+
+        else if(pregunta == 4){
+            System.out.println("Pregunta 4");
+            View b;
+            b = findViewById(R.id.question3);
+            b.setVisibility(View.GONE);
+            Button but = (Button) v;
+            if(but.getText() == "May"){
+                increasePunt(3);
+            }
+            else{
+                decreasePunt(2);
+            }
+            acceptChange = false;
+            nextQuestion(v);
         }
 
         if(acceptChange) {
@@ -153,15 +184,47 @@ public class FirstQuestion extends AppCompatActivity {
                 b.setVisibility(View.VISIBLE);
                 break;
             case 3:
+                myTextView.setText("¿Cuál de estos actores no ha interpretado al trepamuros?");
+                b = findViewById(R.id.button);
+                b.setVisibility(View.GONE);
                 b = findViewById(R.id.question2);
                 b.setVisibility(View.GONE);
                 b = findViewById(R.id.question3);
                 b.setVisibility(View.VISIBLE);
-                ArrayList<String> prueba = new ArrayList<>();
-                prueba.add("Hola");
-                prueba.add("Adios");
+                ArrayList<String> texts = new ArrayList<>();
+                ArrayList<Integer> images = new ArrayList<>();
+                texts.add("Tobey Maguire");
+                texts.add("Andrew Garfield");
+                texts.add("Tom Cruise");
+                texts.add("Tom Holland");
+
+                images.add(R.drawable.tobey);
+                images.add(R.drawable.andrew);
+                images.add(R.drawable.tomcruise);
+                images.add(R.drawable.tom);
                 ListView lv = (ListView) findViewById(R.id.listview_question);
-                lv.setAdapter(new CustomListView(this, R.layout.list_view, prueba));
+                lv.setAdapter(new CustomListView(this, R.layout.list_view, texts, images));
+                break;
+            case 4:
+                myTextView.setText("¿Cuál de las siguientes es la tía de Peter Parker?");
+                b = findViewById(R.id.button);
+                b.setVisibility(View.GONE);
+                b = findViewById(R.id.question3);
+                b.setVisibility(View.VISIBLE);
+                texts = new ArrayList<>();
+                images = new ArrayList<>();
+                texts.add("Tomás");
+                texts.add("May");
+                texts.add("Antonia");
+                texts.add("Josefina");
+
+                images.add(R.drawable.viejo);
+                images.add(R.drawable.tia_may);
+                images.add(R.drawable.vieja2);
+                images.add(R.drawable.vieja3);
+
+                lv = (ListView) findViewById(R.id.listview_question);
+                lv.setAdapter(new CustomListView(this, R.layout.list_view, texts, images));
                 break;
             default:
                 System.out.println("Fallo");
