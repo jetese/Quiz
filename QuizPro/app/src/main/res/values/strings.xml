@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">QuizPro</string>
+    <string name="botonstart">BotonStart</string>
+    <string name="spiderman_quiz_game">Spiderman Quiz Game</string>
+    <string name="imagenstart">ImagenStart</string>
+    <string name="start">Start</string>
+    <string name="menu">MENU</string>
+    <string name="jugar">Jugar</string>
+</resources>
