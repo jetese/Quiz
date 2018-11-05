@@ -6,4 +6,7 @@
     <string name="start">Start</string>
     <string name="menu">MENU</string>
     <string name="jugar">Jugar</string>
+    <string name="clasificacion">Clasificacion</string>
+    <string name="configuracion">Configuracion</string>
+    <string name="config">config</string>
 </resources>

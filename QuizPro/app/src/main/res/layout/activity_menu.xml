@@ -22,40 +22,85 @@
         app:layout_constraintVertical_bias="0.128" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/play"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_marginTop="52dp"
+        android:background="#DF1F2D"
         android:text="@string/jugar"
         android:textSize="35sp"
-        android:background="#DF1F2D"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/clasi"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_marginTop="36dp"
-        android:text="Clasificacion"
+        android:text="@string/clasificacion"
         android:textSize="25sp"
         android:background="#DF1F2D"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/play" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/config"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_marginTop="36dp"
-        android:text="Configuracion"
-        android:textSize="24sp"
         android:background="#DF1F2D"
+        android:text="@string/configuracion"
+        android:textSize="24sp"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/clasi" />
+
+    <TextView
+        android:id="@+id/confirm"
+        android:layout_width="295dp"
+        android:layout_height="293dp"
+        android:gravity="center"
+        android:text="Vas a empezar como anonimo, ¿Estas seguro?"
+        android:textColor="#000"
+        android:textSize="40sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15" />
+
+    <Button
+        android:id="@+id/yes"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="36dp"
+        android:background="#DF1F2D"
+        android:text="si"
+        android:textSize="24sp"
+        android:visibility="invisible"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/play" />
+
+    <Button
+        android:id="@+id/no"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="36dp"
+        android:background="#DF1F2D"
+        android:text="no"
+        android:textSize="24sp"
+        android:visibility="invisible"
+        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clasi" />
+
 </android.support.constraint.ConstraintLayout>
