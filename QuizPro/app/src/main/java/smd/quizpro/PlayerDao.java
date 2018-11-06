@@ -16,7 +16,7 @@ public interface PlayerDao {
     @Query("DELETE FROM player_table")
     void deleteAll();
 
-    @Query("SELECT * from player_table ORDER BY Nick ASC")
+    @Query("SELECT * from player_table ORDER BY Score ASC")
     List<Player> getAllPlayers();
 
     @Query("UPDATE player_table SET Score = :score WHERE Nick = :name")

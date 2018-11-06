@@ -76,6 +76,17 @@ public class Menu extends AppCompatActivity {
             }
         });
 
+        //Añadir click a botón
+        Button btnclasi = (Button)findViewById(R.id.clasi);
+
+        btnclasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //tx.setTextColor(Color.parseColor("#bdbdbd"));
+                startActivity(new Intent(Menu.this, Clasification.class));
+            }
+        });
+
         Button yes = (Button)findViewById(R.id.yes);
 
         yes.setOnClickListener(new View.OnClickListener() {
