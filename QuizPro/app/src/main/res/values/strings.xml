@@ -9,4 +9,8 @@
     <string name="clasificacion">Clasificacion</string>
     <string name="configuracion">Configuracion</string>
     <string name="config">config</string>
+
+    <array name="profile_pics">
+        <item>@drawable/spider</item>
+    </array>
 </resources>

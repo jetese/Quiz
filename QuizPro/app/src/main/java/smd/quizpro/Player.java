@@ -17,11 +17,20 @@ public class Player {
     private int mScore;
     @ColumnInfo(name = "Difficulty")
     private int mDifficulty;
+    @ColumnInfo(name = "Questions")
+    private int mQuestions;
+    @ColumnInfo(name = "Date")
+    private String mDate;
+    @ColumnInfo(name = "NumberGames")
+    private int mNumberGames;
 
-    public Player(String mNick, int mScore, int mDifficulty) {
+    public Player(String mNick, int mDifficulty, int mQuestions) {
         this.mNick = mNick;
-        this.mScore = mScore;
+        this.mScore = 0;
         this.mDifficulty = mDifficulty;
+        this.mQuestions = mQuestions;
+        this.mDate = "";
+        this.mNumberGames = 0;
     }
 
     public String getNick(){return this.mNick;}
@@ -30,4 +39,10 @@ public class Player {
     public int getDifficulty(){return this.mDifficulty;}
     public void setScore(int punt){this.mScore = punt;}
     public void setDifficulty(int dif){this.mDifficulty=dif;}
+    public int getQuestions(){return this.mQuestions;}
+    public void setQuestions(int quest){this.mQuestions = quest;}
+    public String getDate(){return this.mDate;}
+    public void setDate(String date){this.mDate = date;}
+    public int getNumberGames(){return  this.mNumberGames;};
+    public void setNumberGames(int number){this.mNumberGames = number;}
 }
