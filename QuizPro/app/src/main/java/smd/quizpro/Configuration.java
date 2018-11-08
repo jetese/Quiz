@@ -99,15 +99,6 @@ public class Configuration extends AppCompatActivity {
         int questions = mPlayerDao.selectQuestions(user);
         ButtonQuest.setText(quest[questions]);
 
-        /*buttondif.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                int difficulty = mPlayerDao.selectDifficulty(user);
-                difficulty = (difficulty+1)%3;
-                mPlayerDao.updateDifficulty(difficulty,user);
-                buttondif.setText(dif[difficulty]);
-
-            }
-        });*/
     }
 
     public void chooseProfile (View v){
