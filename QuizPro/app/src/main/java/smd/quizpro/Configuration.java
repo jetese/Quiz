@@ -2,16 +2,22 @@ package smd.quizpro;
 
 import android.arch.lifecycle.LiveData;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.ByteArrayOutputStream;
 
 public class Configuration extends AppCompatActivity {
     public static final String EXTRA_REPLY = "smd.quizpro.android.playerlistsql.REPLY";
@@ -64,7 +70,10 @@ public class Configuration extends AppCompatActivity {
 
         //Crear el usuario anonimo si no está creado
         if(mPlayerDao.selectPlayer(anon) == null){
-            Player j = new Player(anon,0,0,"");
+            Drawable drawable = this.getDrawable(R.drawable.spider);
+        // convert drawable to bitmap
+            String bitmap = BitMapToString(((BitmapDrawable)drawable).getBitmap());
+            Player j = new Player(anon,0,0,bitmap);
             mPlayerDao.insert(j);
         }
 
@@ -97,5 +106,13 @@ public class Configuration extends AppCompatActivity {
         questions = (questions+1)%quest.length;
         mPlayerDao.updateQuestions(questions,user);
         button.setText(quest[questions]);
+    }
+
+    public String BitMapToString(Bitmap bitmap){
+        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
+        byte [] b=baos.toByteArray();
+        String temp=Base64.encodeToString(b, Base64.DEFAULT);
+        return temp;
     }
 }
