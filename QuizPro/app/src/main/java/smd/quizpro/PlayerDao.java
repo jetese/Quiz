@@ -2,6 +2,7 @@ package smd.quizpro;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
@@ -51,4 +52,10 @@ public interface PlayerDao {
 
     @Query("UPDATE player_table SET NumberGames = NumberGames+1 WHERE Nick = :name")
     void updateNumberGames(String name);
+
+    @Query("UPDATE player_table SET Photo = :photo WHERE Nick = :name")
+    void updatePhoto(String name,String photo);
+
+    @Query("DELETE FROM player_table WHERE Nick = :name")
+    void deletePlayer(String name);
 }

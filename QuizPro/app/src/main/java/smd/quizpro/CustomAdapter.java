@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,6 +71,7 @@ public class CustomAdapter extends BaseAdapter {
             holder.max_points.setText(row_pos.getPoints());
             holder.date_last.setText(row_pos.getDate());
         }
+
 
         return convertView;
     }

@@ -6,31 +6,22 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Base64;
-import android.view.ContextMenu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-import static smd.quizpro.Configuration.EXTRA_REPLY;
+
 
 public class Profile extends AppCompatActivity implements AdapterView.OnItemClickListener {
     String[] nicknames;
@@ -48,8 +39,10 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemClic
     Bitmap bitmap;
     PackageManager pm;
 
-    static final int PICK_IMAGE = 2;
+
     static final int DO_PHOTO = 1;
+    static final int PICK_IMAGE = 2;
+    static final int UPDATE_PHOTO = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +53,11 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemClic
         PlayerRoomDatabase db = PlayerRoomDatabase.getDatabase(this);
         mPlayerDao = db.playerDao();
 
+        //Crear lista de usuarios
         setList();
+
+        //Variable para comprobar si hay camara
+        pm = this.getPackageManager();
 
         //Añadir fuente a los diferentes elementos
         TextView tx = (TextView)findViewById(R.id.textView3);
@@ -81,11 +78,11 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemClic
         tx = (TextView)findViewById(R.id.delete);
         tx.setTypeface(custom_font);
 
-        pm = this.getPackageManager();
+
 
     }
 
-    @Override
+    @Override   //Selección de usuario en la lista
     public void onItemClick(AdapterView<?> parent, View view, int position, long id){
         itemSelected = rowItems.get(position).getNickname();
         for (int i = 0; i < myListView.getChildCount(); i++) {
@@ -100,6 +97,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemClic
 
     }
 
+    // Menu de crear usuario
     public void createUserMenu(View v){
         //Visibles
         findViewById(R.id.textView4).setVisibility(View.VISIBLE);
@@ -110,35 +108,16 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemClic
         findViewById(R.id.createUser).setVisibility(View.INVISIBLE);
     }
 
+    //Creación de usuario
     public void createUser(View v){
         EditText mEditPlayerView = findViewById(R.id.plain_text_input);
-        Intent replyIntent = new Intent();
-        if (TextUtils.isEmpty(mEditPlayerView.getText())) {
-            setResult(RESULT_CANCELED, replyIntent);
-        } else {
+
+        if (!TextUtils.isEmpty(mEditPlayerView.getText())) {
             word = mEditPlayerView.getText().toString();
-            replyIntent.putExtra(EXTRA_REPLY, word);
-            setResult(RESULT_OK, replyIntent);
             word = word.toLowerCase();
-            Player p;
-            p = mPlayerDao.selectPlayer(word);
 
-            if (p == null){
-                if (pm.hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(intent, DO_PHOTO);
-                }
-                else{
-                    Intent intent = new Intent();
-                    intent.setType("image/*");
-                    intent.setAction(Intent.ACTION_GET_CONTENT);
-                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
-                    setList();
-                }
-
-                /*Player jugador = new Player(word,0,0, bitmap.toString());
-                mPlayerDao.insert(jugador);*/
-
+            if (mPlayerDao.selectPlayer(word) == null){
+                PhotoOrGallery(DO_PHOTO);
             }
             Configuration.user = word;
 
@@ -149,15 +128,10 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemClic
 
             //Invisibles
             findViewById(R.id.createUser).setVisibility(View.VISIBLE);
-
-
-
-
         }
-
-        //finish();
     }
 
+    //Menu de listado de usuarios
     public void selectUser(View v){
         //Visibles
         findViewById(R.id.listview_question).setVisibility(View.VISIBLE);
@@ -169,6 +143,40 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemClic
         findViewById(R.id.selectUser).setVisibility(View.INVISIBLE);
     }
 
+    //Llamada de botón a actualizar foto
+    public void updatePhoto(View v){
+        PhotoOrGallery(UPDATE_PHOTO);
+    }
+
+    // Borrar usuario seleccionado?
+    public void deleteUser(View v){
+        TextView confirm = findViewById(R.id.confirm);
+        confirm.setText("¿Quieres eliminar el usuario "+Configuration.user+"?, ¿Estas seguro?");
+        findViewById(R.id.confirm).setVisibility(View.VISIBLE);
+        findViewById(R.id.yes).setVisibility(View.VISIBLE);
+        findViewById(R.id.no).setVisibility(View.VISIBLE);
+        findViewById(R.id.listview_question).setVisibility(View.INVISIBLE);
+    }
+
+    //Borrar usuario
+    public void deleteUserConfirm(View v){
+        mPlayerDao.deletePlayer(Configuration.user);
+        setList();
+        findViewById(R.id.confirm).setVisibility(View.INVISIBLE);
+        findViewById(R.id.yes).setVisibility(View.INVISIBLE);
+        findViewById(R.id.no).setVisibility(View.INVISIBLE);
+        findViewById(R.id.listview_question).setVisibility(View.VISIBLE);
+    }
+
+    // No borrar Usuario
+    public void deleteUserDeny(View v){
+        findViewById(R.id.confirm).setVisibility(View.INVISIBLE);
+        findViewById(R.id.yes).setVisibility(View.INVISIBLE);
+        findViewById(R.id.no).setVisibility(View.INVISIBLE);
+        findViewById(R.id.listview_question).setVisibility(View.VISIBLE);
+    }
+
+    //Generar o actualizar lista
     public void setList(){
         rowItems = new ArrayList<RowItem>();
 
@@ -180,9 +188,13 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemClic
         profile_pics = new String[players.size()];
 
         profi =  getResources().obtainTypedArray(R.array.profile_pics);
+        int selected = 0;
 
         for(int i= 0; i<players.size(); i++){
             nicknames[i] = players.get(i).getNick();
+            if(nicknames[i] == Configuration.user){
+                selected = i;
+            }
             max_points[i] = Integer.toString( players.get(i).getScore());
             number_games[i] = Integer.toString(players.get(i).getNumberGames());
             last_dates[i] = players.get(i).getDate();
@@ -198,7 +210,8 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemClic
         myListView.setOnItemClickListener(this);
     }
 
-    @Override
+
+    @Override // Manejador de los resultados de las Actividades Nueva foto, Elegir imagen de galeria, Actualizar foto
     protected void onActivityResult (int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
         if ( requestCode == DO_PHOTO && resultCode == RESULT_OK) {
@@ -218,12 +231,32 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemClic
             Player jugador = new Player(word, 0, 0, BitMapToString(bitmap));
             mPlayerDao.insert(jugador);
         }
+        else if(requestCode == UPDATE_PHOTO && resultCode == RESULT_OK){
+            bitmap = (Bitmap) data.getExtras().get("data");
+
+            mPlayerDao.updatePhoto(Configuration.user,BitMapToString(bitmap));
+        }
 
         setList();
     }
 
+    //LLamada a las actividades Nueva foto o Actualizar foto según el parámetro de entrada
+    private void PhotoOrGallery(int selectOrUpdate){
+        if (pm.hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent, selectOrUpdate);
+        }
+        else{
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+        }
+    }
 
-    public String BitMapToString(Bitmap bitmap){
+
+    //Pasar BitMap a String
+    public static String BitMapToString(Bitmap bitmap){
         ByteArrayOutputStream baos=new  ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
         byte [] b=baos.toByteArray();

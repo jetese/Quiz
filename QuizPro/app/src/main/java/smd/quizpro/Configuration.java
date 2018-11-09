@@ -23,7 +23,7 @@ public class Configuration extends AppCompatActivity {
     public static final String EXTRA_REPLY = "smd.quizpro.android.playerlistsql.REPLY";
     private EditText mEditPlayerView;
     private PlayerDao mPlayerDao;
-    private static String anon = "anonimous";
+
     public static String user="anonimous";
 
     private String[] dif= {
@@ -68,14 +68,7 @@ public class Configuration extends AppCompatActivity {
         tx.setTypeface(custom_font);
         tx.setText(user);
 
-        //Crear el usuario anonimo si no está creado
-        if(mPlayerDao.selectPlayer(anon) == null){
-            Drawable drawable = this.getDrawable(R.drawable.spider);
-        // convert drawable to bitmap
-            String bitmap = BitMapToString(((BitmapDrawable)drawable).getBitmap());
-            Player j = new Player(anon,0,0,bitmap);
-            mPlayerDao.insert(j);
-        }
+
 
 
         Button buttondif = findViewById(R.id.dif);
@@ -108,11 +101,4 @@ public class Configuration extends AppCompatActivity {
         button.setText(quest[questions]);
     }
 
-    public String BitMapToString(Bitmap bitmap){
-        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
-        byte [] b=baos.toByteArray();
-        String temp=Base64.encodeToString(b, Base64.DEFAULT);
-        return temp;
-    }
 }

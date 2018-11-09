@@ -118,6 +118,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="155dp"
         android:background="#DF1F2D"
+        android:onClick="updatePhoto"
         android:text="Modificar"
         android:textSize="15sp"
         android:visibility="invisible"
@@ -132,6 +133,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="155dp"
         android:background="#DF1F2D"
+        android:onClick="deleteUser"
         android:text="Eliminar"
         android:textSize="15sp"
         android:visibility="invisible"
@@ -139,5 +141,49 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/plain_text_input" />
+
+    <TextView
+        android:id="@+id/confirm"
+        android:layout_width="295dp"
+        android:layout_height="293dp"
+        android:gravity="center"
+        android:text=""
+        android:textColor="#000"
+        android:textSize="40sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.237" />
+
+    <Button
+        android:id="@+id/yes"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:background="#DF1F2D"
+        android:onClick="deleteUserConfirm"
+        android:text="si"
+        android:textSize="24sp"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirm" />
+
+    <Button
+        android:id="@+id/no"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:background="#DF1F2D"
+        android:onClick="deleteUserDeny"
+        android:text="no"
+        android:textSize="24sp"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yes" />
 
 </android.support.constraint.ConstraintLayout>
