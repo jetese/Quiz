@@ -2,12 +2,21 @@ package smd.quizpro;
 
 public class RowItem {
     private String nickname;
-    private int pic_id;
+    //private int pic_id;
+    private String pic_id;
     private String points;
     private String date;
     private String number;
 
-    public RowItem (String nickname,int pic_id,String points,String number, String date){
+    /*public RowItem (String nickname,int pic_id,String points,String number, String date){
+        this.nickname = nickname;
+        this.pic_id = pic_id;
+        this.points = points;
+        this.date = date;
+        this.number = number;
+    }*/
+
+    public RowItem (String nickname,String pic_id,String points,String number, String date){
         this.nickname = nickname;
         this.pic_id = pic_id;
         this.points = points;
@@ -23,11 +32,19 @@ public class RowItem {
         this.nickname = nickname;
     }
 
-    public int getPicid(){
+    /*public int getPicid(){
         return pic_id;
     }
 
     public void setPicid(int pic_id){
+        this.pic_id = pic_id;
+    }*/
+
+    public String getPicid(){
+        return pic_id;
+    }
+
+    public void setPicid(String pic_id){
         this.pic_id = pic_id;
     }
     public String getPoints(){

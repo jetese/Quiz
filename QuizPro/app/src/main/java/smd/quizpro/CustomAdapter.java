@@ -2,6 +2,9 @@ package smd.quizpro;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +48,7 @@ public class CustomAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
         ViewHolder holder = null;
+        ImageView image;
         LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 
         if(convertView == null){
@@ -53,13 +57,14 @@ public class CustomAdapter extends BaseAdapter {
 
             holder.nickname = (TextView) convertView.findViewById(R.id.nickname);
             holder.profile_pic = (ImageView) convertView.findViewById(R.id.profile_pic);
+            //holder.profile_pic = holder.profile_pic.setImageBitmap(StringToBitMap(((TextView)convertView.findViewById(R.id.profile_pic)).getText().toString()));
             holder.games_number = (TextView) convertView.findViewById(R.id.games_number);
             holder.max_points = (TextView) convertView.findViewById(R.id.max_points);
             holder.date_last = (TextView) convertView.findViewById(R.id.date_last);
 
             RowItem row_pos = rowItems.get(position);
 
-            holder.profile_pic.setImageResource(row_pos.getPicid());
+            holder.profile_pic.setImageBitmap(StringToBitMap(row_pos.getPicid()));
             holder.nickname.setText(row_pos.getNickname());
             holder.games_number.setText(row_pos.getNumber());
             holder.max_points.setText(row_pos.getPoints());
@@ -68,4 +73,16 @@ public class CustomAdapter extends BaseAdapter {
 
         return convertView;
     }
+
+    public Bitmap StringToBitMap(String encodedString){
+        try {
+            byte [] encodeByte=Base64.decode(encodedString,Base64.DEFAULT);
+            Bitmap bitmap=BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            return bitmap;
+        } catch(Exception e) {
+            e.getMessage();
+            return null;
+        }
+    }
+
 }

@@ -23,14 +23,17 @@ public class Player {
     private String mDate;
     @ColumnInfo(name = "NumberGames")
     private int mNumberGames;
+    @ColumnInfo(name = "Photo")
+    private String mPhoto;
 
-    public Player(String mNick, int mDifficulty, int mQuestions) {
+    public Player(String mNick, int mDifficulty, int mQuestions, String mPhoto) {
         this.mNick = mNick;
         this.mScore = 0;
         this.mDifficulty = mDifficulty;
         this.mQuestions = mQuestions;
         this.mDate = "";
         this.mNumberGames = 0;
+        this.mPhoto = mPhoto;
     }
 
     public String getNick(){return this.mNick;}
@@ -45,4 +48,6 @@ public class Player {
     public void setDate(String date){this.mDate = date;}
     public int getNumberGames(){return  this.mNumberGames;};
     public void setNumberGames(int number){this.mNumberGames = number;}
+    public String getPhoto(){return this.mPhoto;}
+    public void setmPhoto(String photo){this.mPhoto = photo;}
 }

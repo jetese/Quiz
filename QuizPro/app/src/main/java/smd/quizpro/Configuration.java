@@ -64,32 +64,10 @@ public class Configuration extends AppCompatActivity {
 
         //Crear el usuario anonimo si no está creado
         if(mPlayerDao.selectPlayer(anon) == null){
-            Player j = new Player(anon,0,0);
+            Player j = new Player(anon,0,0,"");
             mPlayerDao.insert(j);
         }
-        /*mEditPlayerView = findViewById(R.id.plain_text_input);
-        final Button button = findViewById(R.id.send);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent replyIntent = new Intent();
-                if (TextUtils.isEmpty(mEditPlayerView.getText())) {
-                    setResult(RESULT_CANCELED, replyIntent);
-                } else {
-                    String word = mEditPlayerView.getText().toString();
-                    replyIntent.putExtra(EXTRA_REPLY, word);
-                    setResult(RESULT_OK, replyIntent);
-                    word = word.toLowerCase();
-                    Player p;
-                    p = mPlayerDao.selectPlayer(word);
-                    if (p == null){
-                        Player jugador = new Player(word,0,0);
-                        mPlayerDao.insert(jugador);
-                    }
-                    user = word;
-                }
-                finish();
-            }
-        });*/
+
 
         Button buttondif = findViewById(R.id.dif);
         int difficulty = mPlayerDao.selectDifficulty(user);
