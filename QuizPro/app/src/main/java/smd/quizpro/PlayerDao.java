@@ -45,4 +45,10 @@ public interface PlayerDao {
 
     @Query("UPDATE player_table SET Score = :score WHERE Nick = :name AND Score < :score")
     void updateScoreGreater(String name, int score);
+
+    @Query("UPDATE player_table SET Date = :date WHERE Nick = :name")
+    void updateDate(String name,String date);
+
+    @Query("UPDATE player_table SET NumberGames = NumberGames+1 WHERE Nick = :name")
+    void updateNumberGames(String name);
 }
