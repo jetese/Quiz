@@ -42,4 +42,7 @@ public interface PlayerDao {
 
     @Query("Select * FROM player_table Where Nick = :name")
     Player selectPlayer(String name);
+
+    @Query("UPDATE player_table SET Score = :score WHERE Nick = :name AND Score < :score")
+    void updateScoreGreater(String name, int score);
 }
