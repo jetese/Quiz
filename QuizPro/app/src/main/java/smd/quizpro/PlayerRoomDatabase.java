@@ -7,9 +7,10 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
-@Database(entities = {Player.class}, version = 2)
+@Database(entities = {Question.class, Player.class}, version = 1)
 public abstract class PlayerRoomDatabase extends RoomDatabase{
     public abstract PlayerDao playerDao();
+    public abstract QuestionDao questionDao();
 
     private static volatile PlayerRoomDatabase INSTANCE;
 
@@ -43,9 +44,11 @@ public abstract class PlayerRoomDatabase extends RoomDatabase{
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
 
         private final PlayerDao mDao;
+        private final QuestionDao qDao;
 
         PopulateDbAsync(PlayerRoomDatabase db) {
             mDao = db.playerDao();
+            qDao = db.questionDao();
         }
 
         @Override
