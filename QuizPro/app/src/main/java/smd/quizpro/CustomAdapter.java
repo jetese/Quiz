@@ -70,6 +70,10 @@ public class CustomAdapter extends BaseAdapter {
             holder.games_number.setText(row_pos.getNumber());
             holder.max_points.setText(row_pos.getPoints());
             holder.date_last.setText(row_pos.getDate());
+
+        }
+        else if(rowItems.get(position).getNickname().contentEquals(Configuration.user) ){
+            convertView.setBackgroundColor(Color.BLUE);
         }
 
 
