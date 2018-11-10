@@ -73,6 +73,7 @@ public class Clasification extends AppCompatActivity {
 
                 // Change the item text size
                 item.setTextSize(TypedValue.COMPLEX_UNIT_DIP,18);
+                item.setTextColor(Color.WHITE);
 
                 // return the view
                 return item;

@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -53,6 +54,8 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemClic
         PlayerRoomDatabase db = PlayerRoomDatabase.getDatabase(this);
         mPlayerDao = db.playerDao();
 
+        //Eliminar barra de herramientas
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //Crear lista de usuarios
         setList();
 
@@ -77,6 +80,8 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemClic
         tx.setTypeface(custom_font);
         tx = (TextView)findViewById(R.id.delete);
         tx.setTypeface(custom_font);
+        tx = (TextView)findViewById(R.id.confirm);
+        tx.setTypeface(custom_font);
 
 
 
@@ -87,9 +92,9 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemClic
         itemSelected = rowItems.get(position).getNickname();
         for (int i = 0; i < myListView.getChildCount(); i++) {
             if(position == i ){
-                myListView.getChildAt(i).setBackgroundColor(Color.BLUE);
+                myListView.getChildAt(i).setBackgroundColor(Color.WHITE);
             }else{
-                myListView.getChildAt(i).setBackgroundColor(Color.TRANSPARENT);
+                myListView.getChildAt(i).setBackgroundColor(Color.parseColor("#DF1F2D"));
             }
         }
 
@@ -151,11 +156,14 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemClic
     // Borrar usuario seleccionado?
     public void deleteUser(View v){
         TextView confirm = findViewById(R.id.confirm);
-        confirm.setText("¿Quieres eliminar el usuario "+Configuration.user+"?, ¿Estas seguro?");
+        confirm.setText("¿Quieres eliminar el usuario "+Configuration.user);
         findViewById(R.id.confirm).setVisibility(View.VISIBLE);
         findViewById(R.id.yes).setVisibility(View.VISIBLE);
         findViewById(R.id.no).setVisibility(View.VISIBLE);
         findViewById(R.id.listview_question).setVisibility(View.INVISIBLE);
+        findViewById(R.id.update).setVisibility(View.INVISIBLE);
+        findViewById(R.id.delete).setVisibility(View.INVISIBLE);
+        findViewById(R.id.textView3).setVisibility(View.INVISIBLE);
     }
 
     //Borrar usuario
@@ -166,6 +174,9 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemClic
         findViewById(R.id.yes).setVisibility(View.INVISIBLE);
         findViewById(R.id.no).setVisibility(View.INVISIBLE);
         findViewById(R.id.listview_question).setVisibility(View.VISIBLE);
+        findViewById(R.id.update).setVisibility(View.VISIBLE);
+        findViewById(R.id.delete).setVisibility(View.VISIBLE);
+        findViewById(R.id.textView3).setVisibility(View.VISIBLE);
     }
 
     // No borrar Usuario
@@ -174,6 +185,9 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemClic
         findViewById(R.id.yes).setVisibility(View.INVISIBLE);
         findViewById(R.id.no).setVisibility(View.INVISIBLE);
         findViewById(R.id.listview_question).setVisibility(View.VISIBLE);
+        findViewById(R.id.update).setVisibility(View.VISIBLE);
+        findViewById(R.id.delete).setVisibility(View.VISIBLE);
+        findViewById(R.id.textView3).setVisibility(View.VISIBLE);
     }
 
     //Generar o actualizar lista

@@ -64,9 +64,6 @@ public class Configuration extends AppCompatActivity {
         tx.setTypeface(custom_font);
         tx = (TextView)findViewById(R.id.questions);
         tx.setTypeface(custom_font);
-        tx = (TextView)findViewById(R.id.plain_text_input);
-        tx.setTypeface(custom_font);
-        tx.setText(user);
 
 
 

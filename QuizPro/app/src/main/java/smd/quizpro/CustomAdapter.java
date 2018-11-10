@@ -52,6 +52,7 @@ public class CustomAdapter extends BaseAdapter {
         ImageView image;
         LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 
+
         if(convertView == null){
             convertView = mInflater.inflate(R.layout.list_item,null);
             holder = new ViewHolder();
@@ -71,10 +72,13 @@ public class CustomAdapter extends BaseAdapter {
             holder.max_points.setText(row_pos.getPoints());
             holder.date_last.setText(row_pos.getDate());
 
+            convertView.setBackgroundColor(Color.parseColor("#DF1F2D"));
         }
         else if(rowItems.get(position).getNickname().contentEquals(Configuration.user) ){
-            convertView.setBackgroundColor(Color.BLUE);
+            convertView.setBackgroundColor(Color.WHITE);
         }
+
+
 
 
         return convertView;

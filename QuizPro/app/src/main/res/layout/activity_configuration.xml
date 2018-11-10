@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#447BBE"
+    android:background="@drawable/background3"
     tools:context=".Configuration">
 
     <TextView
@@ -13,15 +13,13 @@
         android:layout_height="121dp"
         android:gravity="center"
         android:text="@string/config"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:textSize="60sp"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.035" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView4"
@@ -29,7 +27,7 @@
         android:layout_height="80dp"
         android:gravity="center"
         android:text="Perfiles"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
@@ -39,22 +37,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.193" />
 
-    <EditText
-        android:id="@+id/plain_text_input"
-        android:layout_width="255dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="1dp"
-        android:layout_marginTop="16dp"
-        android:inputType="text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/send"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:background="#DF1F2D"
+        android:textColor="#fff"
         android:onClick="chooseProfile"
         android:text="Gestionar"
         android:textSize="30sp"
@@ -69,7 +57,7 @@
         android:layout_height="80dp"
         android:gravity="center"
         android:text="Dificultad"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:textSize="40sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -80,6 +68,7 @@
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:background="#DF1F2D"
+        android:textColor="#fff"
         android:onClick="setDifficulty"
         android:text="5 preguntas"
         android:textSize="30sp"
@@ -93,7 +82,7 @@
         android:layout_height="80dp"
         android:gravity="center"
         android:text="Preguntas"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:textSize="40sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -103,13 +92,15 @@
         android:id="@+id/questions"
         android:layout_width="300dp"
         android:layout_height="100dp"
+        android:layout_marginBottom="3dp"
         android:background="#DF1F2D"
+        android:textColor="#fff"
         android:onClick="setQuestions"
         android:text="Conjunto 1"
         android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>
