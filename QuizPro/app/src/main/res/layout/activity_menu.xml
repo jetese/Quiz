@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#447BBE"
+    android:background="@drawable/background3"
     tools:context=".Menu">
 
     <TextView
@@ -13,22 +13,22 @@
         android:layout_height="121dp"
         android:gravity="center"
         android:text="@string/menu"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:textSize="80sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.128" />
+        />
 
     <Button
         android:id="@+id/play"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_marginTop="52dp"
-        android:background="#DF1F2D"
+        android:background="@drawable/buttonshapecolor"
         android:text="@string/jugar"
         android:textSize="35sp"
+        android:textColor="#fff"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -40,7 +40,8 @@
         android:layout_marginTop="36dp"
         android:text="@string/clasificacion"
         android:textSize="25sp"
-        android:background="#DF1F2D"
+        android:background="@drawable/buttonshapecolor"
+        android:textColor="#fff"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -51,9 +52,10 @@
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_marginTop="36dp"
-        android:background="#DF1F2D"
+        android:background="@drawable/buttonshapecolor"
         android:text="@string/configuracion"
         android:textSize="24sp"
+        android:textColor="#fff"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -65,7 +67,7 @@
         android:layout_height="293dp"
         android:gravity="center"
         android:text="Vas a empezar como anonimo, ¿Estas seguro?"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:textSize="40sp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -79,28 +81,27 @@
         android:id="@+id/yes"
         android:layout_width="300dp"
         android:layout_height="100dp"
-        android:layout_marginTop="36dp"
-        android:background="#DF1F2D"
+        android:background="@drawable/buttonshapecolor"
+        android:textColor="#fff"
         android:text="si"
         android:textSize="24sp"
         android:visibility="invisible"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/play" />
+        app:layout_constraintTop_toBottomOf="@+id/confirm" />
 
     <Button
         android:id="@+id/no"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_marginTop="36dp"
-        android:background="#DF1F2D"
+        android:background="@drawable/buttonshapecolor"
+        android:textColor="#fff"
         android:text="no"
         android:textSize="24sp"
         android:visibility="invisible"
-        app:layout_constraintHorizontal_bias="0.535"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clasi" />
+        app:layout_constraintTop_toBottomOf="@+id/yes" />
 
 </android.support.constraint.ConstraintLayout>
