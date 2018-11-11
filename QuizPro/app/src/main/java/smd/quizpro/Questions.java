@@ -330,6 +330,54 @@ public class Questions extends AppCompatActivity {
 
         allQuestions.add(q);
 
+        respuestas = "";
+        respuestas += "Scorpion;";
+        respuestas += "Shocker;";
+        respuestas += "Black Cat;";
+        respuestas += "Joker";
+
+        media = "android.resource://" + getPackageName() + "/" + R.drawable.black_cat;
+
+        q = new Question("¿Cual de los siguientes no es un enemigo de Spiderman?", RADIAL_TYPE, EASY_GROUP, respuestas, 3, media);
+
+        allQuestions.add(q);
+
+        respuestas = "";
+        respuestas += "Atari 2600;";
+        respuestas += "Commodore 64;";
+        respuestas += "PS One;";
+        respuestas += "NES";
+
+        media = "android.resource://" + getPackageName() + "/" + R.raw.atari;
+
+        q = new Question("¿En que consola se publico el primer juego de Spiderman?", VIDEO_TYPE, EASY_GROUP, respuestas, 0, media);
+
+        allQuestions.add(q);
+
+        respuestas = "";
+        respuestas += "The Amazing Spiderman;";
+        respuestas += "Spiderman 2;";
+        respuestas += "Spiderman: Into the Spiderverse;";
+        respuestas += "Spiderman Homecoming";
+
+        media = "android.resource://" + getPackageName() + "/" + R.raw.homecoming;
+
+        q = new Question("¿A que pelicula de Spiderman pertenecen las siguientes imagenes?", VIDEO_TYPE, EASY_GROUP, respuestas, 3, media);
+
+        allQuestions.add(q);
+
+        respuestas = "";
+        respuestas += "DC;";
+        respuestas += "Panini;";
+        respuestas += "Marvel;";
+        respuestas += "Sony";
+
+        media = "android.resource://" + getPackageName() + "/" + R.drawable.spiderman2;
+
+        q = new Question("¿Que productora creo a Spiderman?", RADIAL_TYPE, EASY_GROUP, respuestas, 3, media);
+
+        allQuestions.add(q);
+
 
         qDao.deleteAll();
 
@@ -389,7 +437,6 @@ public class Questions extends AppCompatActivity {
         mc.setAnchorView(video);
         video.start();
     }
-
 
     public void setAudioQuestion(Question q){
         normalQuestion.removeAllViews();
