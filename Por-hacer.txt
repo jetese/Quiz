@@ -1,0 +1,6 @@
+Cronómetro
+Seleccionar grupo de preguntas (Grupo 1: 20, Grupo 2: 20+5)
+Remaquetar RadialQuestion
+Error Clasificación
+Desde la pantalla de juego al pulsar atrás volver al menú principal
+

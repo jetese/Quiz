@@ -1,5 +1,6 @@
 package smd.quizpro;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -81,5 +82,14 @@ public class Clasification extends AppCompatActivity {
         };
         lv.setAdapter(adapter);
 
+    }
+
+    /***
+     * Al pulsar atrás en la Clasificación siempre se vuelve al menú
+     */
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(Clasification.this, Menu.class));
     }
 }

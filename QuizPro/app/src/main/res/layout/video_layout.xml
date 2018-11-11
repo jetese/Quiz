@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:buttonTint="@color/colorAccent"
+                android:buttonTint="#DF1F2D"
                 android:text="RadioButton"
                 android:textColor="@color/cardview_light_background" />
 
@@ -46,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:buttonTint="@color/colorAccent"
+                android:buttonTint="#DF1F2D"
                 android:text="RadioButton"
                 android:textColor="@color/cardview_light_background" />
 
@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:buttonTint="@color/colorAccent"
+                android:buttonTint="#DF1F2D"
                 android:text="RadioButton"
                 android:textColor="@color/cardview_light_background" />
 
@@ -64,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:buttonTint="@color/colorAccent"
+                android:buttonTint="#DF1F2D"
                 android:text="RadioButton"
                 android:textColor="@color/cardview_light_background" />
         </RadioGroup>

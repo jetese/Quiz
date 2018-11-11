@@ -18,6 +18,10 @@ public interface QuestionDao {
     @Query("SELECT * from question_table")
     List<Question> selectAll();
 
+
+    @Query("SELECT * FROM question_table WHERE `group` <= :group ORDER BY RANDOM() LIMIT :limit")
+    List<Question> selectWithLimit(int limit, int group);
+
     @Query("DELETE FROM question_table")
     void deleteAll();
 

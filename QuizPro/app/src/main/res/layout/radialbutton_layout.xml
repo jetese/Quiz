@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:buttonTint="@color/colorAccent"
+            android:buttonTint="#DF1F2D"
             android:checked="true"
             android:padding="8dp"
             android:text="Volar"
@@ -59,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:buttonTint="@color/colorAccent"
+            android:buttonTint="#DF1F2D"
             android:padding="8dp"
             android:text="Lanzar Telarañas"
             android:textColor="#fff" />
@@ -69,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:buttonTint="@color/colorAccent"
+            android:buttonTint="#DF1F2D"
             android:padding="8dp"
             android:text="Encoger"
             android:textColor="#fff" />
@@ -79,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:buttonTint="@color/colorAccent"
+            android:buttonTint="#DF1F2D"
             android:padding="8dp"
             android:text="Invisibilidad"
             android:textColor="#fff" />
