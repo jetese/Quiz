@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TextView;
 
 public class Menu extends AppCompatActivity {
@@ -20,6 +19,11 @@ public class Menu extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         //Añadir fuente
+        AddFont();
+    }
+
+    //Añadir fuente
+    private void AddFont(){
         TextView tx = (TextView)findViewById(R.id.textView3);
         Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/spiderman.ttf");
         tx.setTypeface(custom_font);
@@ -35,88 +39,64 @@ public class Menu extends AppCompatActivity {
         tx.setTypeface(custom_font);
         tx = (TextView)findViewById(R.id.no);
         tx.setTypeface(custom_font);
-
-        //Añadir click a botón
-        Button btn = (Button)findViewById(R.id.back_menu);
-
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //tx.setTextColor(Color.parseColor("#bdbdbd"));
-                startActivity(new Intent(Menu.this, Configuration.class));
-            }
-        });
-
-        Button play = (Button)findViewById(R.id.play);
-        play.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //tx.setTextColor(Color.parseColor("#bdbdbd"));
-                if(Configuration.user == "anonimous"){
-                    View b = findViewById(R.id.play);
-                    b.setVisibility(View.INVISIBLE);
-                    b = findViewById(R.id.textView3);
-                    b.setVisibility(View.INVISIBLE);
-                    b = findViewById(R.id.clasi);
-                    b.setVisibility(View.INVISIBLE);
-                    b = findViewById(R.id.back_menu);
-                    b.setVisibility(View.INVISIBLE);
-                    b = findViewById(R.id.yes);
-                    b.setVisibility(View.VISIBLE);
-                    b = findViewById(R.id.no);
-                    b.setVisibility(View.VISIBLE);
-                    b = findViewById(R.id.confirm);
-                    b.setVisibility(View.VISIBLE);
-
-                }
-                else{
-                    startActivity(new Intent(Menu.this, Questions.class));
-                }
-
-            }
-        });
-
-        //Añadir click a botón
-        Button btnclasi = (Button)findViewById(R.id.clasi);
-
-        btnclasi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //tx.setTextColor(Color.parseColor("#bdbdbd"));
-                startActivity(new Intent(Menu.this, Clasification.class));
-            }
-        });
-
-        Button yes = (Button)findViewById(R.id.yes);
-
-        yes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //tx.setTextColor(Color.parseColor("#bdbdbd"));
-                startActivity(new Intent(Menu.this, Questions.class));
-            }
-        });
-
-        Button no = (Button)findViewById(R.id.no);
-
-        no.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                View b = findViewById(R.id.play);
-                b.setVisibility(View.VISIBLE);
-                b = findViewById(R.id.textView3);
-                b.setVisibility(View.VISIBLE);
-                b = findViewById(R.id.clasi);
-                b.setVisibility(View.VISIBLE);
-                b = findViewById(R.id.back_menu);
-                b.setVisibility(View.VISIBLE);
-                b = findViewById(R.id.yes);
-                b.setVisibility(View.INVISIBLE);
-                b = findViewById(R.id.no);
-                b.setVisibility(View.INVISIBLE);
-                b = findViewById(R.id.confirm);
-                b.setVisibility(View.INVISIBLE);
-            }
-        });
     }
+
+    //Click botón configuración
+    public void Configuration(View v){
+        startActivity(new Intent(Menu.this, Configuration.class));
+    }
+
+    //Click botón Jugar
+    public void Play(View v){
+        if(Configuration.user == "anonimous"){
+            View b = findViewById(R.id.play);
+            b.setVisibility(View.INVISIBLE);
+            b = findViewById(R.id.textView3);
+            b.setVisibility(View.INVISIBLE);
+            b = findViewById(R.id.clasi);
+            b.setVisibility(View.INVISIBLE);
+            b = findViewById(R.id.back_menu);
+            b.setVisibility(View.INVISIBLE);
+            b = findViewById(R.id.yes);
+            b.setVisibility(View.VISIBLE);
+            b = findViewById(R.id.no);
+            b.setVisibility(View.VISIBLE);
+            b = findViewById(R.id.confirm);
+            b.setVisibility(View.VISIBLE);
+
+        }
+        else{
+            startActivity(new Intent(Menu.this, Questions.class));
+        }
+    }
+
+    //Botón clasificación
+    public void Clasification(View v){
+        startActivity(new Intent(Menu.this, Clasification.class));
+    }
+
+    //Confimar empezar como anónimo
+    public void Confirm(View v){
+        startActivity(new Intent(Menu.this, Questions.class));
+    }
+
+    //Denegar empezar como anónimo
+    public void Deny(View v){
+        View b = findViewById(R.id.play);
+        b.setVisibility(View.VISIBLE);
+        b = findViewById(R.id.textView3);
+        b.setVisibility(View.VISIBLE);
+        b = findViewById(R.id.clasi);
+        b.setVisibility(View.VISIBLE);
+        b = findViewById(R.id.back_menu);
+        b.setVisibility(View.VISIBLE);
+        b = findViewById(R.id.yes);
+        b.setVisibility(View.INVISIBLE);
+        b = findViewById(R.id.no);
+        b.setVisibility(View.INVISIBLE);
+        b = findViewById(R.id.confirm);
+        b.setVisibility(View.INVISIBLE);
+    }
+
+
 }

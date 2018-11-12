@@ -59,7 +59,6 @@ public class CustomAdapter extends BaseAdapter {
 
             holder.nickname = (TextView) convertView.findViewById(R.id.nickname);
             holder.profile_pic = (ImageView) convertView.findViewById(R.id.profile_pic);
-            //holder.profile_pic = holder.profile_pic.setImageBitmap(StringToBitMap(((TextView)convertView.findViewById(R.id.profile_pic)).getText().toString()));
             holder.games_number = (TextView) convertView.findViewById(R.id.games_number);
             holder.max_points = (TextView) convertView.findViewById(R.id.max_points);
             holder.date_last = (TextView) convertView.findViewById(R.id.date_last);
@@ -72,10 +71,12 @@ public class CustomAdapter extends BaseAdapter {
             holder.max_points.setText(row_pos.getPoints());
             holder.date_last.setText(row_pos.getDate());
 
-            convertView.setBackgroundColor(Color.parseColor("#DF1F2D"));
-        }
-        else if(rowItems.get(position).getNickname().contentEquals(Configuration.user) ){
-            convertView.setBackgroundColor(Color.WHITE);
+            if(holder.nickname.getText().toString().contentEquals(Configuration.user)){
+                convertView.setBackgroundColor(Color.WHITE);
+            }
+            else{
+                convertView.setBackgroundColor(Color.parseColor("#DF1F2D"));
+            }
         }
 
 

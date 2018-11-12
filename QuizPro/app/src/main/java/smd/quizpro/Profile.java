@@ -26,7 +26,6 @@ import java.util.List;
 
 public class Profile extends AppCompatActivity implements AdapterView.OnItemClickListener {
     String[] nicknames;
-    //int[] profile_pics;
     String[]profile_pics;
     TypedArray profi;
     String[] number_games;
@@ -40,7 +39,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemClic
     Bitmap bitmap;
     PackageManager pm;
 
-
+    static final String ANON = "anonimous";
     static final int DO_PHOTO = 1;
     static final int PICK_IMAGE = 2;
     static final int UPDATE_PHOTO = 3;
@@ -56,6 +55,7 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemClic
 
         //Eliminar barra de herramientas
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         //Crear lista de usuarios
         setList();
 
@@ -63,6 +63,11 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemClic
         pm = this.getPackageManager();
 
         //Añadir fuente a los diferentes elementos
+        AddFont();
+    }
+
+    //Añadir fuente a los diferentes elementos
+    private void AddFont(){
         TextView tx = (TextView)findViewById(R.id.textView3);
         Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/spiderman.ttf");
         tx.setTypeface(custom_font);
@@ -82,9 +87,6 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemClic
         tx.setTypeface(custom_font);
         tx = (TextView)findViewById(R.id.confirm);
         tx.setTypeface(custom_font);
-
-
-
     }
 
     @Override   //Selección de usuario en la lista
@@ -168,8 +170,12 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemClic
 
     //Borrar usuario
     public void deleteUserConfirm(View v){
-        mPlayerDao.deletePlayer(Configuration.user);
-        setList();
+        if(Configuration.user != ANON){
+            mPlayerDao.deletePlayer(Configuration.user);
+            Configuration.user = ANON;
+            setList();
+        }
+
         findViewById(R.id.confirm).setVisibility(View.INVISIBLE);
         findViewById(R.id.yes).setVisibility(View.INVISIBLE);
         findViewById(R.id.no).setVisibility(View.INVISIBLE);

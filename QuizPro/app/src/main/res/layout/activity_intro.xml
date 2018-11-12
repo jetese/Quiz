@@ -38,11 +38,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
-        app:srcCompat="@drawable/webred"
+        android:contentDescription="@string/botonstart"
+        android:onClick="ButtonStart"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:contentDescription="@string/botonstart" />
+        app:srcCompat="@drawable/webred" />
 
     <TextView
         android:id="@+id/textView2"

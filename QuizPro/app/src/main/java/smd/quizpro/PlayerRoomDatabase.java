@@ -7,7 +7,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
-@Database(entities = {Question.class, Player.class}, version = 1)
+@Database(entities = {Question.class, Player.class}, version = 2)
 public abstract class PlayerRoomDatabase extends RoomDatabase{
     public abstract PlayerDao playerDao();
     public abstract QuestionDao questionDao();

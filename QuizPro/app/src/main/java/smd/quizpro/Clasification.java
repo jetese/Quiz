@@ -1,19 +1,12 @@
 package smd.quizpro;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.TypedValue;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,23 +14,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Clasification extends AppCompatActivity {
-    ArrayList<String> texts = new ArrayList<>();
-    ArrayList<Integer> images = new ArrayList<>();
     private PlayerDao mPlayerDao;
-    List<Player> points;
     private Typeface custom_font;
-
     String[] nicknames;
-    //int[] profile_pics;
     String[]profile_pics;
     TypedArray profi;
     String[] max_points;
-    String itemSelected;
-    String word;
     List<RowClasi> rowItems;
     ListView myListView;
     Bitmap bitmap;
-    PackageManager pm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
