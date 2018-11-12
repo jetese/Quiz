@@ -23,6 +23,9 @@ public interface PlayerDao {
     @Query("SELECT * from player_table ORDER BY Nick ASC")
     List<Player> getAllPlayersNick();
 
+    @Query("SELECT * from player_table ORDER BY Score DESC LIMIT 10")
+    List<Player> getPlayersScore();
+
     @Query("UPDATE player_table SET Score = :score WHERE Nick = :name")
     void updateScore(int score, String name);
 
