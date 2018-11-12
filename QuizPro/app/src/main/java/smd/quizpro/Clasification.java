@@ -1,6 +1,9 @@
 package smd.quizpro;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +26,18 @@ public class Clasification extends AppCompatActivity {
     private PlayerDao mPlayerDao;
     List<Player> points;
     private Typeface custom_font;
+
+    String[] nicknames;
+    //int[] profile_pics;
+    String[]profile_pics;
+    TypedArray profi;
+    String[] max_points;
+    String itemSelected;
+    String word;
+    List<RowClasi> rowItems;
+    ListView myListView;
+    Bitmap bitmap;
+    PackageManager pm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,48 +54,8 @@ public class Clasification extends AppCompatActivity {
         custom_font = Typeface.createFromAsset(getAssets(),  "fonts/spiderman.ttf");
         tx.setTypeface(custom_font);
 
-
-        points = mPlayerDao.getAllPlayers();
-
-        String listText;
-        for (int i = 0; i<points.size() && i<10; i++){
-            listText = "        "+points.get(i).getNick();
-            for (int j = 0; j <20 - points.get(i).getNick().length(); j++){
-                listText +=" ";
-            }
-            listText += points.get(i).getScore();
-            texts.add(listText);
-        }
-
-        ListView lv = (ListView) findViewById(R.id.listview_question);
-        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1,texts);
-        ArrayAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,texts){
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent){
-                // Cast the list view each item as text view
-                TextView item = (TextView) super.getView(position,convertView,parent);
-
-                // Set the typeface/font for the current item
-                item.setTypeface(custom_font);
-
-
-                item.setBackgroundColor(
-                        Color.parseColor("#DF1F2D") );
-                // Set the list view item's text color
-                //item.setTextColor(Color.parseColor("#FF3E80F1"));
-
-                // Set the item text style to bold
-                //item.setTypeface(item.getTypeface(), Typeface.BOLD);
-
-                // Change the item text size
-                item.setTextSize(TypedValue.COMPLEX_UNIT_DIP,18);
-                item.setTextColor(Color.WHITE);
-
-                // return the view
-                return item;
-            }
-        };
-        lv.setAdapter(adapter);
+        //Crear lista de usuarios
+        setList();
 
     }
 
@@ -91,5 +66,30 @@ public class Clasification extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         startActivity(new Intent(Clasification.this, Menu.class));
+    }
+
+    //Generar o actualizar lista
+    public void setList(){
+        rowItems = new ArrayList<RowClasi>();
+
+        List<Player> players = mPlayerDao.getPlayersScore();
+        nicknames = new String[players.size()];
+        max_points = new String[players.size()];
+        profile_pics = new String[players.size()];
+
+        profi =  getResources().obtainTypedArray(R.array.profile_pics);
+
+        for(int i= 0; i<players.size(); i++){
+            nicknames[i] = players.get(i).getNick();
+            max_points[i] = Integer.toString( players.get(i).getScore());
+            profile_pics[i] = players.get(i).getPhoto();
+
+            RowClasi item = new RowClasi(nicknames[i],profile_pics[i],max_points[i]);
+            rowItems.add(item);
+        }
+
+        myListView = (ListView) findViewById(R.id.listview_question);
+        CustomAdapter2 adapter = new CustomAdapter2(this,rowItems);
+        myListView.setAdapter(adapter);
     }
 }
