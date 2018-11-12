@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="smd.quizpro">
-    <uses-feature android:name="android.hardware.camera"
+
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/web"
@@ -21,7 +24,8 @@
         <activity android:name=".Configuration" />
         <activity android:name=".Questions" />
         <activity android:name=".Clasification" />
-        <activity android:name=".Profile"></activity>
+        <activity android:name=".Profile" />
+        <activity android:name=".EndGame"></activity>
     </application>
 
 </manifest>

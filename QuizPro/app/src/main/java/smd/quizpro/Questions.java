@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -16,6 +17,8 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
+
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -56,6 +59,26 @@ public class Questions extends AppCompatActivity {
     private MediaPlayer mp;
 
 
+    long startTime = 0;
+    TextView timerTextView;
+
+    Handler timerHandler = new Handler();
+    Runnable timerRunnable = new Runnable() {
+
+        @Override
+        public void run() {
+            long millis = System.currentTimeMillis() - startTime;
+            int seconds = (int) (millis / 1000);
+            int minutes = seconds / 60;
+            seconds = seconds % 60;
+
+            timerTextView.setText(String.format("%d:%02d", minutes, seconds));
+
+            timerHandler.postDelayed(this, 500);
+        };
+    };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +87,10 @@ public class Questions extends AppCompatActivity {
         normalQuestion = (RelativeLayout) findViewById(R.id.content_question_layout);
         normalQuestion.removeAllViews();
         custom_font = Typeface.createFromAsset(getAssets(),  "fonts/spiderman.ttf");
+
+        timerTextView = findViewById(R.id.timer_text);
+        startTime = System.currentTimeMillis();
+        timerHandler.postDelayed(timerRunnable, 0);
 
         setSpidermanFontMain();
 
@@ -524,15 +551,7 @@ public class Questions extends AppCompatActivity {
 
     public void checkCorrectQuestion(View v){
         if(actualQuestionIndex == totalQuestions - 1) {
-            mp.stop();
-            video.stopPlayback();
-            punt = (correctQuestions * 10) - (incorrectQuestions * 5);
-            if(punt<0)
-                punt = 0;
-            pDao.updateScoreGreater(Configuration.user, punt);
-            startActivity(new Intent(Questions.this, Clasification.class));
-
-            System.out.println("Terminada partida");
+            this.endGame();
         }
         else {
             Question actualQ = allQuestions.get(actualQuestionIndex);
@@ -570,6 +589,28 @@ public class Questions extends AppCompatActivity {
         }
     }
 
+    protected void endGame(){
+        if(mp != null) {
+            mp.stop();
+        }
+        if(video != null) {
+            video.stopPlayback();
+        }
+        long millis = System.currentTimeMillis() - startTime;
+        int seconds = (int) (millis / 1000);
+        System.out.println("Terminada la partida en " + seconds + " segundos");
+
+        punt = (int)(correctQuestions*100/seconds);
+        System.out.println("Punt: " + punt);
+        if(punt<0)
+            punt = 0;
+        System.out.println("Puntuación: " + punt);
+        pDao.updateScoreGreater(Configuration.user, punt);
+        Intent endGame = new Intent(Questions.this, EndGame.class);
+        endGame.putExtra("PUNTUATION", punt);
+        startActivity(endGame);
+    }
+
     protected void setSpidermanFontMain(){
         tx = (TextView) findViewById(R.id.question_number);
         tx.setTypeface(custom_font);
@@ -578,6 +619,8 @@ public class Questions extends AppCompatActivity {
         tx = (TextView) findViewById(R.id.question_title);
         tx.setTypeface(custom_font);
         tx = (TextView) findViewById(R.id.nextQuestion);
+        tx.setTypeface(custom_font);
+        tx = (TextView) findViewById(R.id.timer_text);
         tx.setTypeface(custom_font);
     }
 
@@ -618,5 +661,11 @@ public class Questions extends AppCompatActivity {
         tx.setTypeface(custom_font);
         tx = (TextView) findViewById(R.id.pause_button);
         tx.setTypeface(custom_font);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(Questions.this, Menu.class));
     }
 }

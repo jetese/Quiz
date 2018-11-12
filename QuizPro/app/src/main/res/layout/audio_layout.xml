@@ -72,6 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:buttonTint="#df1f2d"
+                android:checked="true"
                 android:text="RadioButton"
                 android:textColor="@color/cardview_light_background" />
 

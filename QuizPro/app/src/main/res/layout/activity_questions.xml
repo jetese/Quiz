@@ -29,6 +29,17 @@
             android:textSize="10sp" />
 
         <TextView
+            android:id="@+id/timer_text"
+            android:layout_width="135dp"
+            android:layout_height="37dp"
+            android:layout_toEndOf="@+id/question_number"
+            android:layout_toStartOf="@+id/correct_answers"
+            android:text="Tiempo: 0"
+            android:textAlignment="center"
+            android:textColor="@color/cardview_light_background"
+            android:textSize="10sp" />
+
+        <TextView
             android:id="@+id/correct_answers"
             android:layout_width="wrap_content"
             android:layout_height="37dp"
