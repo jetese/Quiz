@@ -47,7 +47,7 @@ public class CustomAdapter2 extends BaseAdapter {
 
 
         if(convertView == null){
-            convertView = mInflater.inflate(R.layout.list_item2,null);
+            convertView = mInflater.inflate(R.layout.list_item2 ,null);
             holder = new CustomAdapter2.ViewHolder();
 
             holder.nickname = (TextView) convertView.findViewById(R.id.nickname);
