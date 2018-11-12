@@ -9,6 +9,21 @@
     <string name="clasificacion">Clasificacion</string>
     <string name="configuracion">Configuracion</string>
     <string name="config">config</string>
+    <string name="vas_a_empezar_como_anonimo_estas_seguro">Vas a empezar como anonimo, ¿Estas seguro?</string>
+    <string name="si">si</string>
+    <string name="no">no</string>
+    <string name="gestionar">Gestionar</string>
+    <string name="dificultad">Dificultad</string>
+    <string name="_5_preguntas">5 preguntas</string>
+    <string name="preguntas">Preguntas</string>
+    <string name="conjunto_1">Conjunto 1</string>
+    <string name="perfiles">Perfiles</string>
+    <string name="seleccionar_usuario">Seleccionar usuario</string>
+    <string name="crear_usuario">Crear usuario</string>
+    <string name="confirmar">Confirmar</string>
+    <string name="modificar">Modificar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="mejores_scores">Mejores scores</string>
 
     <array name="profile_pics">
         <item>@drawable/spider</item>

@@ -12,7 +12,7 @@
         android:layout_width="329dp"
         android:layout_height="121dp"
         android:gravity="center"
-        android:text="Mejores scores"
+        android:text="@string/mejores_scores"
         android:textColor="#fff"
         android:textSize="40sp"
         app:layout_constraintLeft_toLeftOf="parent"
