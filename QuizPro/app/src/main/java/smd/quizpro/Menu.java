@@ -27,7 +27,7 @@ public class Menu extends AppCompatActivity {
         tx.setTypeface(custom_font);
         tx = (TextView)findViewById(R.id.clasi);
         tx.setTypeface(custom_font);
-        tx = (TextView)findViewById(R.id.config);
+        tx = (TextView)findViewById(R.id.back_menu);
         tx.setTypeface(custom_font);
         tx = (TextView)findViewById(R.id.confirm);
         tx.setTypeface(custom_font);
@@ -37,7 +37,7 @@ public class Menu extends AppCompatActivity {
         tx.setTypeface(custom_font);
 
         //Añadir click a botón
-        Button btn = (Button)findViewById(R.id.config);
+        Button btn = (Button)findViewById(R.id.back_menu);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +59,7 @@ public class Menu extends AppCompatActivity {
                     b.setVisibility(View.INVISIBLE);
                     b = findViewById(R.id.clasi);
                     b.setVisibility(View.INVISIBLE);
-                    b = findViewById(R.id.config);
+                    b = findViewById(R.id.back_menu);
                     b.setVisibility(View.INVISIBLE);
                     b = findViewById(R.id.yes);
                     b.setVisibility(View.VISIBLE);
@@ -108,7 +108,7 @@ public class Menu extends AppCompatActivity {
                 b.setVisibility(View.VISIBLE);
                 b = findViewById(R.id.clasi);
                 b.setVisibility(View.VISIBLE);
-                b = findViewById(R.id.config);
+                b = findViewById(R.id.back_menu);
                 b.setVisibility(View.VISIBLE);
                 b = findViewById(R.id.yes);
                 b.setVisibility(View.INVISIBLE);

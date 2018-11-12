@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/play" />
 
     <Button
-        android:id="@+id/config"
+        android:id="@+id/back_menu"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_marginTop="36dp"
