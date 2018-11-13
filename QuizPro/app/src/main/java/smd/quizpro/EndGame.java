@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 public class EndGame extends AppCompatActivity {
@@ -17,7 +18,7 @@ public class EndGame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end_game);
         custom_font = Typeface.createFromAsset(getAssets(),  "fonts/spiderman.ttf");
-
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         int punt = getIntent().getIntExtra("PUNTUATION", 0);
 
         tx = (TextView) findViewById(R.id.puntVal);

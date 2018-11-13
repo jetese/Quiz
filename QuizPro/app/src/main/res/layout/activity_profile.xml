@@ -117,7 +117,7 @@
     <Button
         android:id="@+id/update"
         android:layout_width="wrap_content"
-        android:minWidth="200dp"
+        android:minWidth="100dp"
         android:layout_height="50dp"
         android:layout_marginTop="155dp"
         android:background="@drawable/buttonshapecolor"
@@ -134,7 +134,7 @@
     <Button
         android:id="@+id/delete"
         android:layout_width="wrap_content"
-        android:minWidth="200dp"
+        android:minWidth="100dp"
         android:layout_height="50dp"
         android:layout_marginTop="155dp"
         android:background="@drawable/buttonshapecolor"
