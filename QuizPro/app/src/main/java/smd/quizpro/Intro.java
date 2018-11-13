@@ -88,10 +88,10 @@ public class Intro extends AppCompatActivity {
             respuestas += "Los Ramones;";
             respuestas += "Eric Clapton;";
             respuestas += "Quentin Tarantino;";
-            respuestas += "Rosalía";
+            respuestas += "Rosalia";
             String media = "android.resource://" + getPackageName() + "/" + R.raw.ramones_intro;
 
-            Question q = new Question("¿Quién compuso esta canción de Spiderman?", VIDEO_TYPE, EASY_GROUP, respuestas, 0, media);
+            Question q = new Question("¿Quien compuso esta canción de Spiderman?", VIDEO_TYPE, EASY_GROUP, respuestas, 0, media);
 
             allQuestions.add(q);
 
@@ -103,7 +103,7 @@ public class Intro extends AppCompatActivity {
 
             media = "android.resource://" + getPackageName() + "/" + R.raw.jonah;
 
-            q = new Question("¿Con quién está hablando Peter Parker?", AUDIO_TYPE, EASY_GROUP, respuestas, 1, media);
+            q = new Question("¿Con quien está hablando Peter Parker?", AUDIO_TYPE, EASY_GROUP, respuestas, 1, media);
 
             allQuestions.add(q);
 
@@ -115,7 +115,7 @@ public class Intro extends AppCompatActivity {
             media = "android.resource://" + getPackageName() + "/" + R.drawable.electro5;
 
 
-            q = new Question("¿Quién es este enemigo de Spiderman?", RADIAL_TYPE, EASY_GROUP, respuestas, 2, media);
+            q = new Question("¿Quien es este enemigo de Spiderman?", RADIAL_TYPE, EASY_GROUP, respuestas, 2, media);
 
             allQuestions.add(q);
 
@@ -127,7 +127,7 @@ public class Intro extends AppCompatActivity {
 
             media = "android.resource://" + getPackageName() + "/" + R.raw.kiss;
 
-            q = new Question("¿Quién besa a Spiderman en esta escena?", VIDEO_TYPE, EASY_GROUP, respuestas, 3, media);
+            q = new Question("¿Quien besa a Spiderman en esta escena?", VIDEO_TYPE, EASY_GROUP, respuestas, 3, media);
 
             allQuestions.add(q);
 
@@ -139,7 +139,7 @@ public class Intro extends AppCompatActivity {
 
             media = "android.resource://" + getPackageName() + "/" + R.raw.spidermanfriends;
 
-            q = new Question("¿A qué serie pertenece esta introducción?", VIDEO_TYPE, HARD_GROUP, respuestas, 1, media);
+            q = new Question("¿A que serie pertenece esta introduccion?", VIDEO_TYPE, HARD_GROUP, respuestas, 1, media);
 
             allQuestions.add(q);
 
@@ -151,7 +151,7 @@ public class Intro extends AppCompatActivity {
 
             media = "android.resource://" + getPackageName() + "/" + R.raw.series1977;
 
-            q = new Question("¿De qué año es esta serie de Spiderman?", VIDEO_TYPE, HARD_GROUP, respuestas, 0, media);
+            q = new Question("¿De que año es esta serie de Spiderman?", VIDEO_TYPE, HARD_GROUP, respuestas, 0, media);
 
             allQuestions.add(q);
 
@@ -163,7 +163,7 @@ public class Intro extends AppCompatActivity {
 
             media = "android.resource://" + getPackageName() + "/" + R.raw.green_goblin;
 
-            q = new Question("¿Quién es el siguiente enemigo del trepamuros?", VIDEO_TYPE, EASY_GROUP, respuestas, 2, media);
+            q = new Question("¿Quien es el siguiente enemigo del trepamuros?", VIDEO_TYPE, EASY_GROUP, respuestas, 2, media);
 
             allQuestions.add(q);
 
@@ -175,7 +175,7 @@ public class Intro extends AppCompatActivity {
 
             media = "android.resource://" + getPackageName() + "/" + R.drawable.miles;
 
-            q = new Question("¿Quién es el siguiente personaje?", RADIAL_TYPE, EASY_GROUP, respuestas, 1, media);
+            q = new Question("¿Quien es el siguiente personaje?", RADIAL_TYPE, EASY_GROUP, respuestas, 1, media);
 
             allQuestions.add(q);
 
@@ -187,7 +187,7 @@ public class Intro extends AppCompatActivity {
 
             media = "android.resource://" + getPackageName() + "/" + R.drawable.periodico;
 
-            q = new Question("¿Cómo se llama el periódico en el que escribe Peter Parker?", RADIAL_TYPE, EASY_GROUP, respuestas, 0, media);
+            q = new Question("¿Como se llama el periodico en el que escribe Peter Parker?", RADIAL_TYPE, EASY_GROUP, respuestas, 0, media);
 
             allQuestions.add(q);
 
@@ -195,11 +195,11 @@ public class Intro extends AppCompatActivity {
             respuestas += "Dmitri Anatoly;";
             respuestas += "Sergei Kravinoff;";
             respuestas += "Aleksei Sytsevich;";
-            respuestas += "Joaquín";
+            respuestas += "Joaquin";
 
             media = "android.resource://" + getPackageName() + "/" + R.drawable.rhino;
 
-            q = new Question("¿Cuál es el nombre real de este villano?", RADIAL_TYPE, HARD_GROUP, respuestas, 2, media);
+            q = new Question("¿Cual es el nombre real de este villano?", RADIAL_TYPE, HARD_GROUP, respuestas, 2, media);
 
             allQuestions.add(q);
 
@@ -211,7 +211,7 @@ public class Intro extends AppCompatActivity {
 
             media = "android.resource://" + getPackageName() + "/" + R.drawable.civil_war_suit;
 
-            q = new Question("¿Quién diseño este traje para Spiderman?", RADIAL_TYPE, EASY_GROUP, respuestas, 0, media);
+            q = new Question("¿Quien diseño este traje para Spiderman?", RADIAL_TYPE, EASY_GROUP, respuestas, 0, media);
 
             allQuestions.add(q);
 
@@ -223,7 +223,7 @@ public class Intro extends AppCompatActivity {
 
             media = "android.resource://" + getPackageName() + "/" + R.raw.venom;
 
-            q = new Question("¿A quién pertenece la voz del siguiente personaje?", AUDIO_TYPE, EASY_GROUP, respuestas, 3, media);
+            q = new Question("¿A quien pertenece la voz del siguiente personaje?", AUDIO_TYPE, EASY_GROUP, respuestas, 3, media);
 
             allQuestions.add(q);
 
@@ -247,7 +247,7 @@ public class Intro extends AppCompatActivity {
 
             media = "android.resource://" + getPackageName() + "/" + R.raw.spidermanps4;
 
-            q = new Question("¿Quién ha desarrollado este juego de Spiderman?", VIDEO_TYPE, EASY_GROUP, respuestas, 3, media);
+            q = new Question("¿Quien ha desarrollado este juego de Spiderman?", VIDEO_TYPE, EASY_GROUP, respuestas, 3, media);
 
             allQuestions.add(q);
 
@@ -271,7 +271,7 @@ public class Intro extends AppCompatActivity {
 
             media = "android.resource://" + getPackageName() + "/" + R.drawable.amazing_spiderman1;
 
-            q = new Question("¿Donde sucedió la primera aparición del hombre araña?", RADIAL_TYPE, HARD_GROUP, respuestas, 2, media);
+            q = new Question("¿Donde sucedio la primera aparicion del hombre araña?", RADIAL_TYPE, HARD_GROUP, respuestas, 2, media);
 
             allQuestions.add(q);
 
@@ -283,7 +283,7 @@ public class Intro extends AppCompatActivity {
 
             media = "android.resource://" + getPackageName() + "/" + R.drawable.stan_lee;
 
-            q = new Question("¿Cual de las siguientes personas no participó en la creación del personaje?", RADIAL_TYPE, EASY_GROUP, respuestas, 1, media);
+            q = new Question("¿Cual de las siguientes personas no participo en la creacion del personaje?", RADIAL_TYPE, EASY_GROUP, respuestas, 1, media);
 
             allQuestions.add(q);
 
@@ -379,7 +379,7 @@ public class Intro extends AppCompatActivity {
 
             media = "android.resource://" + getPackageName() + "/" + R.drawable.spidey_3;
 
-            q = new Question("¿En que año se publico el siguiente comic?", RADIAL_TYPE, EASY_GROUP, respuestas, 0, media);
+            q = new Question("¿Cual es el animal que concede poderes a Spiderman?", RADIAL_TYPE, EASY_GROUP, respuestas, 0, media);
 
             allQuestions.add(q);
 

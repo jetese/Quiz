@@ -284,6 +284,11 @@ public class Profile extends AppCompatActivity implements AdapterView.OnItemClic
         return temp;
     }
 
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(Profile.this, Menu.class));
+    }
+
 
 
 }
