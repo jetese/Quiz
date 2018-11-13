@@ -34,10 +34,10 @@
         android:id="@+id/max_points"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/nickname"
         android:layout_alignTop="@+id/nickname"
-        android:layout_marginStart="263dp"
+        android:layout_alignParentEnd="true"
         android:layout_marginTop="2dp"
+        android:layout_marginEnd="30dp"
         android:text="txt"
         android:textSize="16sp" />
 
@@ -46,10 +46,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/max_points"
-        android:layout_alignLeft="@+id/max_points"
-        android:layout_alignTop="@+id/games_number"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="2dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="30dp"
         android:text="txt"
         android:textSize="16sp" />
 

@@ -22,16 +22,18 @@ import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Questions extends AppCompatActivity {
 
-    public final static int VIDEO_TYPE = 1;
-    public final static int RADIAL_TYPE = 2;
-    public final static int AUDIO_TYPE =3;
+    public static final int VIDEO_TYPE = 1;
+    public static final int RADIAL_TYPE = 2;
+    public static final int AUDIO_TYPE =3;
 
-    public final static int EASY_GROUP = 0;
-    public final static int HARD_GROUP = 1;
+    public static final int EASY_GROUP = 0;
+    public static final int HARD_GROUP = 1;
 
     /*BASE DE DATOS */
 
@@ -107,18 +109,6 @@ public class Questions extends AppCompatActivity {
 
         System.out.println("Question group: "  + questions);
 
-
-
-        allQuestions = (ArrayList) qDao.selectAll();
-
-        createQuestions();
-
-/*
-        if(allQuestions.size() == 0) {
-            createQuestions();
-        }*/
-
-
         switch (difficulty){
             case 0:
                 allQuestions = (ArrayList) qDao.selectWithLimit(5, questions);
@@ -139,286 +129,6 @@ public class Questions extends AppCompatActivity {
         setQuestion(actualQuestionIndex);
 
     }
-
-    protected void createQuestions(){
-
-        allQuestions = new ArrayList<>();
-
-        String respuestas = "";
-        respuestas += "Los Ramones;";
-        respuestas += "Eric Clapton;";
-        respuestas += "Quentin Tarantino;";
-        respuestas += "Rosalía";
-        String media = "android.resource://" + getPackageName() + "/" + R.raw.ramones_intro;
-
-        Question q = new Question("¿Quién compuso esta canción de Spiderman?", VIDEO_TYPE, EASY_GROUP, respuestas, 0, media);
-
-        allQuestions.add(q);
-
-        respuestas = "";
-        respuestas += "Electro;";
-        respuestas += "J.J. Jameson;";
-        respuestas += "Tio Ben;";
-        respuestas += "Norman Osborn";
-
-        media = "android.resource://" + getPackageName() + "/" + R.raw.jonah;
-
-        q = new Question("¿Con quién está hablando Peter Parker?", AUDIO_TYPE, EASY_GROUP, respuestas, 1, media);
-
-        allQuestions.add(q);
-
-        respuestas = "";
-        respuestas += "Venom;";
-        respuestas += "Duende Verde;";
-        respuestas += "Electro;";
-        respuestas += "Rhino";
-        media = "android.resource://" + getPackageName() + "/" + R.drawable.electro5;
-
-
-        q = new Question("¿Quién es este enemigo de Spiderman?", RADIAL_TYPE, EASY_GROUP, respuestas, 2, media);
-
-        allQuestions.add(q);
-
-        respuestas = "";
-        respuestas+= "Gwen Stacy;";
-        respuestas+= "May Parker;";
-        respuestas+= "Viuda Negra;";
-        respuestas+= "Mary Jane Watson";
-
-        media = "android.resource://" + getPackageName() + "/" + R.raw.kiss;
-
-        q = new Question("¿Quién besa a Spiderman en esta escena?", VIDEO_TYPE, EASY_GROUP, respuestas, 3, media);
-
-        allQuestions.add(q);
-
-        respuestas = "";
-        respuestas+= "The Amazing Spiderman;";
-        respuestas+= "Spiderman And His Amazing Friends;";
-        respuestas+= "The Special Spiderman;";
-        respuestas+="The Great Spiderman And Buddies";
-
-        media = "android.resource://" + getPackageName() + "/" + R.raw.spidermanfriends;
-
-        q = new Question("¿A qué serie pertenece esta introducción?", VIDEO_TYPE, EASY_GROUP, respuestas, 1, media);
-
-        allQuestions.add(q);
-
-        respuestas = "";
-        respuestas+= "1977;";
-        respuestas+= "1995;";
-        respuestas+= "2001;";
-        respuestas+= "1960";
-
-        media = "android.resource://" + getPackageName() + "/" + R.raw.series1977;
-
-        q = new Question("¿De qué año es esta serie de Spiderman?", VIDEO_TYPE, EASY_GROUP, respuestas, 0, media);
-
-        allQuestions.add(q);
-
-        respuestas = "";
-        respuestas +="Mysterio;";
-        respuestas += "Kingpin;";
-        respuestas += "Duende Verde;";
-        respuestas += "Daredevil";
-
-        media = "android.resource://" + getPackageName() + "/" + R.raw.green_goblin;
-
-        q = new Question("¿Quién es el siguiente enemigo del trepamuros?", VIDEO_TYPE, EASY_GROUP, respuestas, 2, media);
-
-        allQuestions.add(q);
-
-        respuestas = "";
-        respuestas += "Peter Parker;";
-        respuestas += "Miles Morales;";
-        respuestas += "Otto Octavius;";
-        respuestas += "Arthur Morgan";
-
-        media = "android.resource://" + getPackageName() + "/" + R.drawable.miles;
-
-        q = new Question("¿Quién es el siguiente personaje?", RADIAL_TYPE, EASY_GROUP, respuestas, 1, media);
-
-        allQuestions.add(q);
-
-        respuestas = "";
-        respuestas += "Daily Bugle;";
-        respuestas += "New York Times;";
-        respuestas += "Marvel Gacette;";
-        respuestas += "ABC";
-
-        media = "android.resource://" + getPackageName() + "/" + R.drawable.periodico;
-
-        q = new Question("¿Cómo se llama el periódico en el que escribe Peter Parker?", RADIAL_TYPE, EASY_GROUP, respuestas, 0, media);
-
-        allQuestions.add(q);
-
-        respuestas = "";
-        respuestas += "Dmitri Anatoly;";
-        respuestas += "Sergei Kravinoff;";
-        respuestas += "Aleksei Sytsevich;";
-        respuestas += "Joaquín";
-
-        media = "android.resource://" + getPackageName() + "/" + R.drawable.rhino;
-
-        q = new Question("¿Cuál es el nombre real de este villano?", RADIAL_TYPE, EASY_GROUP, respuestas, 2, media);
-
-        allQuestions.add(q);
-
-        respuestas = "";
-        respuestas += "Tony Stark;";
-        respuestas += "Capitan America;";
-        respuestas += "Elon Musk;";
-        respuestas += "Nick Fury";
-
-        media = "android.resource://" + getPackageName() + "/" + R.drawable.civil_war_suit;
-
-        q = new Question("¿Quién diseño este traje para Spiderman?", RADIAL_TYPE, EASY_GROUP, respuestas, 0, media);
-
-        allQuestions.add(q);
-
-        respuestas = "";
-        respuestas += "Spiderman Negro;";
-        respuestas += "Eddie Brock;";
-        respuestas += "Buitre;";
-        respuestas += "Venom";
-
-        media = "android.resource://" + getPackageName() + "/" + R.raw.venom;
-
-        q = new Question("¿A quién pertenece la voz del siguiente personaje?", AUDIO_TYPE, EASY_GROUP, respuestas, 3, media);
-
-        allQuestions.add(q);
-
-        respuestas = "";
-        respuestas += "Futurama;";
-        respuestas += "Los Simpsons;";
-        respuestas += "Yo y el Mundo;";
-        respuestas += "Padre de Familia";
-
-        media = "android.resource://" + getPackageName() + "/" + R.raw.spidercerdo;
-
-        q = new Question("¿A que famosa familia de TV pertenece esta parodia?", AUDIO_TYPE, EASY_GROUP, respuestas, 1, media);
-
-        allQuestions.add(q);
-
-        respuestas = "";
-        respuestas += "Suckerpunch;";
-        respuestas += "ThatGameCompany;";
-        respuestas += "Rockstar San Diego;";
-        respuestas += "Insomniac";
-
-        media = "android.resource://" + getPackageName() + "/" + R.raw.spidermanps4;
-
-        q = new Question("¿Quién ha desarrollado este juego de Spiderman?", VIDEO_TYPE, EASY_GROUP, respuestas, 3, media);
-
-        allQuestions.add(q);
-
-        respuestas = "";
-        respuestas += "Harry Osborn;";
-        respuestas += "Edward Osborn;";
-        respuestas += "Norman Osborn;";
-        respuestas += "Benjen Osborn";
-
-        media = "android.resource://" + getPackageName() + "/" + R.drawable.harry_osborn;
-
-        q = new Question("¿Como se llama el hijo de Norman Osborn?", RADIAL_TYPE, EASY_GROUP, respuestas, 0, media);
-
-        allQuestions.add(q);
-
-        respuestas = "";
-        respuestas += "The Amazing Spiderman #1;";
-        respuestas += "Detective Comics #10;";
-        respuestas += "Amazing Fantasy #15;";
-        respuestas += "Fantastic Four #20";
-
-        media = "android.resource://" + getPackageName() + "/" + R.drawable.amazing_spiderman1;
-
-        q = new Question("¿Donde sucedió la primera aparición del hombre araña?", RADIAL_TYPE, EASY_GROUP, respuestas, 2, media);
-
-        allQuestions.add(q);
-
-        respuestas = "";
-        respuestas += "Stan Lee;";
-        respuestas += "John Romita;";
-        respuestas += "Jack Kirby;";
-        respuestas += "Steve Ditko";
-
-        media = "android.resource://" + getPackageName() + "/" + R.drawable.stan_lee;
-
-        q = new Question("¿Cual de las siguientes personas no participó en la creación del personaje?", RADIAL_TYPE, EASY_GROUP, respuestas, 1, media);
-
-        allQuestions.add(q);
-
-        respuestas = "";
-        respuestas += "Peter Parker;";
-        respuestas += "Peter Benjamin Parker;";
-        respuestas += "Peter Jack Parker;";
-        respuestas += "Peter Lee Parker";
-
-        media = "android.resource://" + getPackageName() + "/" + R.drawable.peter_parker_comic;
-
-        q = new Question("¿Cual es el nombre completo de Spiderman?", RADIAL_TYPE, EASY_GROUP, respuestas, 1, media);
-
-        allQuestions.add(q);
-
-        respuestas = "";
-        respuestas += "Scorpion;";
-        respuestas += "Shocker;";
-        respuestas += "Black Cat;";
-        respuestas += "Joker";
-
-        media = "android.resource://" + getPackageName() + "/" + R.drawable.black_cat;
-
-        q = new Question("¿Cual de los siguientes no es un enemigo de Spiderman?", RADIAL_TYPE, EASY_GROUP, respuestas, 3, media);
-
-        allQuestions.add(q);
-
-        respuestas = "";
-        respuestas += "Atari 2600;";
-        respuestas += "Commodore 64;";
-        respuestas += "PS One;";
-        respuestas += "NES";
-
-        media = "android.resource://" + getPackageName() + "/" + R.raw.atari;
-
-        q = new Question("¿En que consola se publico el primer juego de Spiderman?", VIDEO_TYPE, EASY_GROUP, respuestas, 0, media);
-
-        allQuestions.add(q);
-
-        respuestas = "";
-        respuestas += "The Amazing Spiderman;";
-        respuestas += "Spiderman 2;";
-        respuestas += "Spiderman: Into the Spiderverse;";
-        respuestas += "Spiderman Homecoming";
-
-        media = "android.resource://" + getPackageName() + "/" + R.raw.homecoming;
-
-        q = new Question("¿A que pelicula de Spiderman pertenecen las siguientes imagenes?", VIDEO_TYPE, EASY_GROUP, respuestas, 3, media);
-
-        allQuestions.add(q);
-
-        respuestas = "";
-        respuestas += "DC;";
-        respuestas += "Panini;";
-        respuestas += "Marvel;";
-        respuestas += "Sony";
-
-        media = "android.resource://" + getPackageName() + "/" + R.drawable.spiderman2;
-
-        q = new Question("¿Que productora creo a Spiderman?", RADIAL_TYPE, EASY_GROUP, respuestas, 3, media);
-
-        allQuestions.add(q);
-
-
-        qDao.deleteAll();
-
-        for(Question ques : allQuestions){
-            qDao.insert(ques);
-        }
-
-        System.out.println("Inserted " + allQuestions.size() + " questions");
-
-    }
-
-
     public void setQuestion(int qNumber){
         int actualQuestion = qNumber + 1;
         numberQuestion.setText("Pregunta: "+ actualQuestion +"/"+ totalQuestions);
@@ -581,7 +291,7 @@ public class Questions extends AppCompatActivity {
                 System.out.println("Respuesta incorrecta");
             }
 
-            correctIncorrect.setText("Aciertos/Fallos: " + correctQuestions + "/" + incorrectQuestions);
+            correctIncorrect.setText("A/F: " + correctQuestions + "/" + incorrectQuestions);
 
             actualQuestionIndex++;
 
@@ -605,7 +315,15 @@ public class Questions extends AppCompatActivity {
         if(punt<0)
             punt = 0;
         System.out.println("Puntuación: " + punt);
+
+        String pattern = "dd-MM-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String date = simpleDateFormat.format(new Date());
+
         pDao.updateScoreGreater(Configuration.user, punt);
+        pDao.updateNumberGames(Configuration.user);
+        pDao.updateDate(Configuration.user, date);
+
         Intent endGame = new Intent(Questions.this, EndGame.class);
         endGame.putExtra("PUNTUATION", punt);
         startActivity(endGame);
