@@ -48,7 +48,8 @@ public class Menu extends AppCompatActivity {
 
     //Click botón Jugar
     public void Play(View v){
-        if(Configuration.user == "anonimous"){
+        System.out.println(Configuration.user);
+        if(Configuration.user.equals("anonimous")){
             View b = findViewById(R.id.play);
             b.setVisibility(View.INVISIBLE);
             b = findViewById(R.id.textView3);
