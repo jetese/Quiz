@@ -23,7 +23,6 @@ public class GameEngine {
     private DrawThread theDrawThread;
     public InputController theInputController;
     private final GameView theGameView;
-    private int lives;
 
     private int points;
 
@@ -35,7 +34,6 @@ public class GameEngine {
 
     public GameEngine(Activity activity, GameView gameView) {
         mainActivity = activity;
-        lives = 3;
 
         theGameView = gameView;
         theGameView.setGameObjects(this.gameObjects);
@@ -173,26 +171,15 @@ public class GameEngine {
     public void addCollisionable(GameObject object){
         collisionableObjects.add((ScreenGameObject)object);
     }
+
+    //Buscar la manera de cambiarlo de sitio
     public void removeLive(){
-        if(lives > 0){
-            lives--;
+
             int x = 0;
             while(!(gameObjects.get(x) instanceof GameController)){
                 x++;
             }
             ((GameController)gameObjects.get(x)).decreaseLives(this);
 
-        }
-        else{
-            System.out.println("Gameover-------------------");
-        }
-    }
-
-    public int getPoints() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
     }
 }
