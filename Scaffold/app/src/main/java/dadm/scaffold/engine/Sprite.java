@@ -16,10 +16,10 @@ public abstract class Sprite extends GameObject {
     protected double pixelFactor;
 
     private final Bitmap bitmap;
-    protected final int imageHeight;
-    protected final int imageWidth;
+    protected int imageHeight;
+    protected  int imageWidth;
 
-    private final Matrix matrix = new Matrix();
+    protected   Matrix matrix = new Matrix();
 
     protected Sprite (GameEngine gameEngine, int drawableRes) {
         Resources r = gameEngine.getContext().getResources();
