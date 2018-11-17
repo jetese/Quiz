@@ -12,6 +12,7 @@ public class Asteroid extends Sprite {
     private final double speed;
     private double speedX;
     private double speedY;
+    private double rotationSpeed;
     private Random rnd;
     public Asteroid(GameController gameController, GameEngine
             gameEngine) {
@@ -37,6 +38,13 @@ public class Asteroid extends Sprite {
             gameEngine.removeGameObject(this);
             mController.returnToPool(this);
         }
+        rotation+= rotationSpeed* elapsedMillis;
+        if (rotation > 360) {
+            rotation = 0;
+        }
+        else if (rotation< 0) {
+            rotation = 360;
+        }
     }
     public void init(GameEngine gameEngine) {
         // They initialize in a [-30, 30] degrees angle
@@ -49,5 +57,8 @@ public class Asteroid extends Sprite {
                 gameEngine.width/4;
         // They initialize outside of the screen vertically
         positionY = -imageHeight;
+        rotation = rnd.nextInt(360);
+        rotationSpeed = angle*(180d / Math.PI)/250d;
+
     }
 }
