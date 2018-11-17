@@ -26,6 +26,7 @@ public class SpaceShipPlayer extends Sprite {
         speedFactor = pixelFactor * 100d / 1000d; // We want to move at 100px per second on a 400px tall screen
         maxX = gameEngine.width - imageWidth;
         maxY = gameEngine.height - imageHeight;
+        startGame();
 
         initBulletPool(gameEngine);
     }
@@ -114,6 +115,7 @@ public class SpaceShipPlayer extends Sprite {
             removeObject(gameEngine);
             Asteroid a = (Asteroid) otherObject;
             a.removeObject(gameEngine);
+            gameEngine.removeLive();
         }
     }
 }

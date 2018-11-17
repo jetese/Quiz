@@ -76,11 +76,11 @@ public class Asteroid extends Sprite {
     @Override
     public void onCollision(GameEngine gameEngine,
                             ScreenGameObject otherObject) {
-        if (otherObject instanceof Bullet) {
+        /*if (otherObject instanceof Bullet) {
             // Remove both from the game (and return them to their pools)
             removeObject(gameEngine);
             Bullet b = (Bullet) otherObject;
             b.removeObject(gameEngine);
-        }
+        }*/
     }
 }

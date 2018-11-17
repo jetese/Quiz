@@ -1,6 +1,7 @@
 package dadm.scaffold.engine;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 
 import java.util.ArrayList;
@@ -23,6 +24,8 @@ public class GameEngine {
     public InputController theInputController;
     private final GameView theGameView;
     private int lives;
+
+    private int points;
 
     public int width;
     public int height;
@@ -173,9 +176,23 @@ public class GameEngine {
     public void removeLive(){
         if(lives > 0){
             lives--;
+            int x = 0;
+            while(!(gameObjects.get(x) instanceof GameController)){
+                x++;
+            }
+            ((GameController)gameObjects.get(x)).decreaseLives(this);
+
         }
         else{
             System.out.println("Gameover-------------------");
         }
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 }
