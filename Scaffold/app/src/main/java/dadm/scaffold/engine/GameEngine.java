@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dadm.scaffold.input.InputController;
+import dadm.scaffold.space.Asteroid;
+import dadm.scaffold.space.SpaceShipPlayer;
 
 public class GameEngine {
 
@@ -14,11 +16,13 @@ public class GameEngine {
     private List<GameObject> gameObjects = new ArrayList<GameObject>();
     private List<GameObject> objectsToAdd = new ArrayList<GameObject>();
     private List<GameObject> objectsToRemove = new ArrayList<GameObject>();
+    private List<ScreenGameObject> collisionableObjects = new ArrayList<>();
 
     private UpdateThread theUpdateThread;
     private DrawThread theDrawThread;
     public InputController theInputController;
     private final GameView theGameView;
+    private int lives;
 
     public int width;
     public int height;
@@ -28,6 +32,7 @@ public class GameEngine {
 
     public GameEngine(Activity activity, GameView gameView) {
         mainActivity = activity;
+        lives = 3;
 
         theGameView = gameView;
         theGameView.setGameObjects(this.gameObjects);
@@ -40,6 +45,22 @@ public class GameEngine {
 
 
     }
+
+    private void checkCollisions() {
+        int numObjects = collisionableObjects.size();
+        for (int i = 0; i < numObjects; i++) {
+            ScreenGameObject objectA = collisionableObjects.get(i);
+            for (int j = i + 1; j < numObjects; j++) {
+                ScreenGameObject objectB = collisionableObjects.get(j);
+                if (objectA.checkCollision(objectB)) {
+                    System.out.println(objectA+" collide with "+objectB);
+                    objectA.onCollision(this, objectB);
+                    objectB.onCollision(this, objectA);
+                }
+            }
+        }
+    }
+
 
     public void setTheInputController(InputController inputController) {
         theInputController = inputController;
@@ -96,6 +117,9 @@ public class GameEngine {
             objectsToAdd.add(gameObject);
         } else {
             gameObjects.add(gameObject);
+            if(gameObject instanceof SpaceShipPlayer){
+                collisionableObjects.add((ScreenGameObject) gameObject);
+            }
         }
         mainActivity.runOnUiThread(gameObject.onAddedRunnable);
     }
@@ -110,12 +134,19 @@ public class GameEngine {
         for (int i = 0; i < numGameObjects; i++) {
             gameObjects.get(i).onUpdate(elapsedMillis, this);
         }
+        checkCollisions();
         synchronized (gameObjects) {
             while (!objectsToRemove.isEmpty()) {
-                gameObjects.remove(objectsToRemove.remove(0));
+                //gameObjects.remove(objectsToRemove.remove(0));
+                GameObject objectToRemove = objectsToRemove.remove(0);
+                gameObjects.remove(objectToRemove);
+                collisionableObjects.remove(objectToRemove);
             }
             while (!objectsToAdd.isEmpty()) {
-                gameObjects.add(objectsToAdd.remove(0));
+                //gameObjects.add(objectsToAdd.remove(0));
+                GameObject gameObjecToAdd = objectsToAdd.remove(0);
+                gameObjects.add(gameObjecToAdd);
+                collisionableObjects.add((ScreenGameObject) gameObjecToAdd);
             }
         }
     }
@@ -134,5 +165,17 @@ public class GameEngine {
 
     public Context getContext() {
         return theGameView.getContext();
+    }
+
+    public void addCollisionable(GameObject object){
+        collisionableObjects.add((ScreenGameObject)object);
+    }
+    public void removeLive(){
+        if(lives > 0){
+            lives--;
+        }
+        else{
+            System.out.println("Gameover-------------------");
+        }
     }
 }

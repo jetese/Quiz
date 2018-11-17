@@ -5,6 +5,7 @@ import java.util.List;
 
 import dadm.scaffold.R;
 import dadm.scaffold.engine.GameEngine;
+import dadm.scaffold.engine.ScreenGameObject;
 import dadm.scaffold.engine.Sprite;
 import dadm.scaffold.input.InputController;
 
@@ -58,6 +59,13 @@ public class SpaceShipPlayer extends Sprite {
         // Get the info from the inputController
         updatePosition(elapsedMillis, gameEngine.theInputController);
         checkFiring(elapsedMillis, gameEngine);
+
+
+        this.x = positionX;
+        this.y = positionY;
+        this.width = imageWidth;
+        this.height = imageHeight;
+        onPostUpdate(gameEngine);
     }
 
     private void updatePosition(long elapsedMillis, InputController inputController) {
@@ -75,6 +83,7 @@ public class SpaceShipPlayer extends Sprite {
         if (positionY > maxY) {
             positionY = maxY;
         }
+
     }
 
     private void checkFiring(long elapsedMillis, GameEngine gameEngine) {
@@ -92,4 +101,19 @@ public class SpaceShipPlayer extends Sprite {
         }
     }
 
+    public void removeObject(GameEngine gameEngine){
+        gameEngine.removeGameObject(this);
+        gameEngine.addGameObject(new SpaceShipPlayer(gameEngine));
+    }
+
+    @Override
+    public void onCollision(GameEngine gameEngine,
+                            ScreenGameObject otherObject) {
+        if (otherObject instanceof Asteroid) {
+            // Remove both from the game (and return them to their pools)
+            removeObject(gameEngine);
+            Asteroid a = (Asteroid) otherObject;
+            a.removeObject(gameEngine);
+        }
+    }
 }

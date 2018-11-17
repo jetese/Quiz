@@ -5,6 +5,7 @@ import java.util.Random;
 import dadm.scaffold.R;
 import dadm.scaffold.engine.GameController;
 import dadm.scaffold.engine.GameEngine;
+import dadm.scaffold.engine.ScreenGameObject;
 import dadm.scaffold.engine.Sprite;
 
 public class Asteroid extends Sprite {
@@ -45,6 +46,11 @@ public class Asteroid extends Sprite {
         else if (rotation< 0) {
             rotation = 360;
         }
+        this.x = positionX;
+        this.y = positionY;
+        this.width = imageWidth;
+        this.height = imageHeight;
+        onPostUpdate(gameEngine);
     }
     public void init(GameEngine gameEngine) {
         // They initialize in a [-30, 30] degrees angle
@@ -60,5 +66,21 @@ public class Asteroid extends Sprite {
         rotation = rnd.nextInt(360);
         rotationSpeed = angle*(180d / Math.PI)/250d;
 
+    }
+
+    public void removeObject(GameEngine gameEngine){
+        gameEngine.removeGameObject(this);
+        mController.returnToPool(this);
+    }
+
+    @Override
+    public void onCollision(GameEngine gameEngine,
+                            ScreenGameObject otherObject) {
+        if (otherObject instanceof Bullet) {
+            // Remove both from the game (and return them to their pools)
+            removeObject(gameEngine);
+            Bullet b = (Bullet) otherObject;
+            b.removeObject(gameEngine);
+        }
     }
 }

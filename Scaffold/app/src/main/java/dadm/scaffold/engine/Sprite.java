@@ -3,11 +3,13 @@ package dadm.scaffold.engine;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
-public abstract class Sprite extends GameObject {
+public abstract class Sprite extends ScreenGameObject {
 
     protected double positionX;
     protected double positionY;
@@ -18,6 +20,7 @@ public abstract class Sprite extends GameObject {
     private final Bitmap bitmap;
     protected int imageHeight;
     protected  int imageWidth;
+    protected Paint paint;
 
     protected   Matrix matrix = new Matrix();
 
@@ -31,6 +34,9 @@ public abstract class Sprite extends GameObject {
         this.imageWidth = (int) (spriteDrawable.getIntrinsicWidth() * this.pixelFactor);
 
         this.bitmap = ((BitmapDrawable) spriteDrawable).getBitmap();
+        this.paint = new Paint();
+
+
     }
 
     @Override
@@ -41,10 +47,20 @@ public abstract class Sprite extends GameObject {
                 || positionY < - imageHeight) {
             return;
         }
+        if (x > canvas.getWidth() || y > canvas.getHeight()
+                || x < -width || y < -height) {
+            return;
+        }
+        paint.setColor(Color.YELLOW);
+        canvas.drawRect(boundingRect, paint);
         matrix.reset();
         matrix.postScale((float) pixelFactor, (float) pixelFactor);
         matrix.postTranslate((float) positionX, (float) positionY);
         matrix.postRotate((float) rotation, (float) (positionX + imageWidth/2), (float) (positionY + imageHeight/2));
         canvas.drawBitmap(bitmap, matrix, null);
+    }
+
+    public void removeObject(GameEngine gameEngine){
+        gameEngine.removeGameObject(this);
     }
 }

@@ -2,6 +2,8 @@ package dadm.scaffold.space;
 
 import dadm.scaffold.R;
 import dadm.scaffold.engine.GameEngine;
+import dadm.scaffold.engine.GameObject;
+import dadm.scaffold.engine.ScreenGameObject;
 import dadm.scaffold.engine.Sprite;
 
 public class Bullet extends Sprite {
@@ -27,6 +29,11 @@ public class Bullet extends Sprite {
             // And return it to the pool
             parent.releaseBullet(this);
         }
+        this.x = positionX;
+        this.y = positionY;
+        this.width = imageWidth;
+        this.height = imageHeight;
+        onPostUpdate(gameEngine);
     }
 
 
@@ -34,5 +41,21 @@ public class Bullet extends Sprite {
         positionX = initPositionX - imageWidth/2;
         positionY = initPositionY - imageHeight/2;
         parent = parentPlayer;
+    }
+
+    public void removeObject(GameEngine gameEngine){
+        gameEngine.removeGameObject(this);
+        parent.releaseBullet(this);
+    }
+
+    @Override
+    public void onCollision(GameEngine gameEngine,
+                            ScreenGameObject otherObject) {
+        if (otherObject instanceof Asteroid) {
+            // Remove both from the game (and return them to their pools)
+            removeObject(gameEngine);
+            Asteroid a = (Asteroid) otherObject;
+            a.removeObject(gameEngine);
+        }
     }
 }

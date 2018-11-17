@@ -2,21 +2,33 @@ package dadm.scaffold.space;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
 import dadm.scaffold.engine.GameEngine;
+import dadm.scaffold.engine.GameObject;
 import dadm.scaffold.engine.Sprite;
 
-public class ParallaxBackground extends Sprite {
+public class ParallaxBackground extends GameObject {
     private Bitmap bitmap;
     private double speedY;
     private float screenHeight;
     private float screenWidth;
     private float targetWidth;
 
+    protected double positionX;
+    protected double positionY;
+    protected double rotation;
+
+    protected double pixelFactor;
+
+    protected int imageHeight;
+    protected  int imageWidth;
+
+    protected Matrix matrix = new Matrix();
+
     public ParallaxBackground(GameEngine gameEngine,int speed,int drawableResId) {
-        super(gameEngine,drawableResId);
         Drawable spriteDrawable = gameEngine.getContext().getResources()
                 .getDrawable(drawableResId);
         bitmap = ((BitmapDrawable) spriteDrawable).getBitmap();
