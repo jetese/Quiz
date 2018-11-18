@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import dadm.scaffold.BaseFragment;
 import dadm.scaffold.R;
@@ -15,6 +16,8 @@ public class EndFragment extends BaseFragment implements View.OnClickListener  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_end_game, container, false);
+        TextView score = (TextView)rootView.findViewById(R.id.score);
+        score.setText("Score: "+getArguments().getInt("score"));
         return rootView;
     }
 
@@ -29,4 +32,6 @@ public class EndFragment extends BaseFragment implements View.OnClickListener  {
     public void onClick(View v) {
         ((ScaffoldActivity)getActivity()).mainMenu();
     }
+
+
 }

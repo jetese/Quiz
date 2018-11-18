@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import dadm.scaffold.counter.ConfigFragment;
 import dadm.scaffold.counter.EndFragment;
 import dadm.scaffold.counter.GameFragment;
 import dadm.scaffold.counter.MainMenuFragment;
@@ -13,6 +14,7 @@ public class ScaffoldActivity extends AppCompatActivity {
 
     private static final String TAG_FRAGMENT = "content";
     private int points;
+    private int ship = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +35,16 @@ public class ScaffoldActivity extends AppCompatActivity {
 
     public void finishGame(int p){
         points=p;
-        navigateToFragment(new EndFragment());
+        Bundle bundle = new Bundle();
+        EndFragment end = new EndFragment();
+        bundle.putInt("score",points);
+        end.setArguments(bundle);
+        navigateToFragment(end);
 
+    }
+
+    public void configGame(){
+        navigateToFragment( new ConfigFragment());
     }
 
     public void mainMenu(){
@@ -82,5 +92,9 @@ public class ScaffoldActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
             }
         }
+    }
+
+    public void setShip(int ship){
+        this.ship = ship;
     }
 }
