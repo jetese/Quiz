@@ -11,8 +11,10 @@ public class GameController extends GameObject{
     protected int currentMillis;
     protected int enemiesSpawned;
     protected int nLives = 3;
+    protected int points;
     private final int MARGIN = 100;
 
+    private Score score;
     private List<Asteroid> asteroidPool = new ArrayList<>();
     private Lives[] lives = new Lives[nLives];
     private final long TIME_BETWEEN_ENEMIES = 500;
@@ -20,6 +22,9 @@ public class GameController extends GameObject{
     public GameController(GameEngine engine){
         currentMillis = 0;
         enemiesSpawned = 20;
+        points = 0;
+        score = new Score(engine);
+        engine.addGameObject(score);
         for (int i=0; i<enemiesSpawned; i++) {
             asteroidPool.add(new Asteroid(this,engine ));
         }
@@ -58,11 +63,16 @@ public class GameController extends GameObject{
 
     public void decreaseLives(GameEngine engine){
         nLives--;
-        if(nLives>=0){
+        if(nLives>0){
             engine.removeGameObject(lives[nLives]);
         }
         else{
-                engine.finishGame(0);
+                engine.finishGame(points);
         }
+    }
+
+    public void addScore(int p){
+        points += p;
+        score.updatePoints(points);
     }
 }
