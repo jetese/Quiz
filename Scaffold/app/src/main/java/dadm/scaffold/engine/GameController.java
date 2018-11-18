@@ -10,11 +10,11 @@ import dadm.scaffold.space.Asteroid;
 public class GameController extends GameObject{
     protected int currentMillis;
     protected int enemiesSpawned;
-    protected int nLives;
+    protected int nLives = 3;
     private final int MARGIN = 100;
 
     private List<Asteroid> asteroidPool = new ArrayList<>();
-    private Lives[] lives = new Lives[3];
+    private Lives[] lives = new Lives[nLives];
     private final long TIME_BETWEEN_ENEMIES = 500;
 
     public GameController(GameEngine engine){
@@ -27,7 +27,6 @@ public class GameController extends GameObject{
             lives[i] = new Lives(this,engine,i*MARGIN,i);
             engine.addGameObject(lives[i]);
         }
-        nLives = lives.length;
 
     }
     @Override
@@ -59,6 +58,11 @@ public class GameController extends GameObject{
 
     public void decreaseLives(GameEngine engine){
         nLives--;
-        engine.removeGameObject(lives[nLives]);
+        if(nLives>=0){
+            engine.removeGameObject(lives[nLives]);
+        }
+        else{
+                engine.finishGame(0);
+        }
     }
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dadm.scaffold.R;
+import dadm.scaffold.engine.GameController;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.ScreenGameObject;
 import dadm.scaffold.engine.Sprite;
@@ -15,19 +16,19 @@ public class SpaceShipPlayer extends Sprite {
     private static final long TIME_BETWEEN_BULLETS = 250;
     List<Bullet> bullets = new ArrayList<Bullet>();
     private long timeSinceLastFire;
-
+    private GameController gameController;
     private int maxX;
     private int maxY;
     private double speedFactor;
 
 
-    public SpaceShipPlayer(GameEngine gameEngine){
+    public SpaceShipPlayer(GameEngine gameEngine, GameController gameCont){
         super(gameEngine, R.drawable.ship);
         speedFactor = pixelFactor * 100d / 1000d; // We want to move at 100px per second on a 400px tall screen
         maxX = gameEngine.width - imageWidth;
         maxY = gameEngine.height - imageHeight;
         startGame();
-
+        gameController = gameCont;
         initBulletPool(gameEngine);
     }
 
@@ -104,7 +105,7 @@ public class SpaceShipPlayer extends Sprite {
 
     public void removeObject(GameEngine gameEngine){
         gameEngine.removeGameObject(this);
-        gameEngine.addGameObject(new SpaceShipPlayer(gameEngine));
+        gameEngine.addGameObject(new SpaceShipPlayer(gameEngine,gameController));
     }
 
     @Override
@@ -115,7 +116,7 @@ public class SpaceShipPlayer extends Sprite {
             removeObject(gameEngine);
             Asteroid a = (Asteroid) otherObject;
             a.removeObject(gameEngine);
-            gameEngine.removeLive();
+            gameController.decreaseLives(gameEngine);
         }
     }
 }

@@ -2,6 +2,7 @@ package dadm.scaffold.counter;
 
 import android.content.DialogInterface;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,9 +51,10 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                 theGameEngine.setTheInputController(new JoystickInputController(getView()));
 
                 theGameEngine.addGameObject(new ParallaxBackground(theGameEngine, 20, R.drawable.maxresdefault));
-                theGameEngine.addGameObject(new SpaceShipPlayer(theGameEngine));
                 theGameEngine.addGameObject(new FramesPerSecondCounter(theGameEngine));
-                theGameEngine.addGameObject(new GameController(theGameEngine));
+                GameController gameController = new GameController(theGameEngine);
+                theGameEngine.addGameObject(gameController);
+                theGameEngine.addGameObject(new SpaceShipPlayer(theGameEngine,gameController));
                 theGameEngine.startGame();
             }
         });
@@ -70,7 +72,7 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public void onPause() {
         super.onPause();
-        if (theGameEngine.isRunning()){
+        if (theGameEngine.isRunning() && theGameEngine.pause){
             pauseGameAndShowPauseDialog();
         }
     }

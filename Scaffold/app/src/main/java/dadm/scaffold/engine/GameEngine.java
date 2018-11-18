@@ -7,6 +7,8 @@ import android.content.Context;
 import java.util.ArrayList;
 import java.util.List;
 
+import dadm.scaffold.ScaffoldActivity;
+import dadm.scaffold.counter.GameFragment;
 import dadm.scaffold.input.InputController;
 import dadm.scaffold.space.Asteroid;
 import dadm.scaffold.space.SpaceShipPlayer;
@@ -24,7 +26,7 @@ public class GameEngine {
     public InputController theInputController;
     private final GameView theGameView;
 
-    private int points;
+    public boolean pause;
 
     public int width;
     public int height;
@@ -43,7 +45,7 @@ public class GameEngine {
                 - theGameView.getPaddingTop() - theGameView.getPaddingTop();
 
         this.pixelFactor = this.height / 400d;
-
+        this.pause = true;
 
     }
 
@@ -172,14 +174,9 @@ public class GameEngine {
         collisionableObjects.add((ScreenGameObject)object);
     }
 
-    //Buscar la manera de cambiarlo de sitio
-    public void removeLive(){
-
-            int x = 0;
-            while(!(gameObjects.get(x) instanceof GameController)){
-                x++;
-            }
-            ((GameController)gameObjects.get(x)).decreaseLives(this);
+    public void finishGame(int points){
+        pause = false;
+        ((ScaffoldActivity)mainActivity).finishGame(points);
 
     }
 }

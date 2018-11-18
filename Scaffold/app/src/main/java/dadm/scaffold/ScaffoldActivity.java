@@ -5,12 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import dadm.scaffold.counter.EndFragment;
 import dadm.scaffold.counter.GameFragment;
 import dadm.scaffold.counter.MainMenuFragment;
 
 public class ScaffoldActivity extends AppCompatActivity {
 
     private static final String TAG_FRAGMENT = "content";
+    private int points;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +28,24 @@ public class ScaffoldActivity extends AppCompatActivity {
     public void startGame() {
         // Navigate the the game fragment, which makes the start automatically
         navigateToFragment( new GameFragment());
+        points= 0;
+    }
+
+    public void finishGame(int p){
+        points=p;
+        navigateToFragment(new EndFragment());
+
+    }
+
+    public void mainMenu(){
+        navigateToFragment(new MainMenuFragment());
     }
 
     private void navigateToFragment(BaseFragment dst) {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.container, dst, TAG_FRAGMENT)
-                .addToBackStack(null)
+                //.addToBackStack(null)
                 .commit();
     }
 
