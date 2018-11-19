@@ -25,29 +25,36 @@ public class ConfigFragment extends BaseFragment implements View.OnClickListener
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        view.findViewById(R.id.back).setOnClickListener(this);
         view.findViewById(R.id.ship1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ship =1;
+                ((ScaffoldActivity)getActivity()).setShip(ship);
+                ((ScaffoldActivity)getActivity()).mainMenu();
             }
         });
         view.findViewById(R.id.ship2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ship =2;
+                ((ScaffoldActivity)getActivity()).setShip(ship);
+                ((ScaffoldActivity)getActivity()).mainMenu();
             }
         });
         view.findViewById(R.id.ship3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ship =3;
+                ((ScaffoldActivity)getActivity()).setShip(ship);
+                ((ScaffoldActivity)getActivity()).mainMenu();
             }
         });
         view.findViewById(R.id.ship4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ship =4;
+                ((ScaffoldActivity)getActivity()).setShip(ship);
+                ((ScaffoldActivity)getActivity()).mainMenu();
             }
         });
 
@@ -55,8 +62,7 @@ public class ConfigFragment extends BaseFragment implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        ((ScaffoldActivity)getActivity()).setShip(ship);
-        ((ScaffoldActivity)getActivity()).mainMenu();
+
     }
 
 }

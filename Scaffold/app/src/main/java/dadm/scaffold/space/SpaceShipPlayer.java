@@ -1,5 +1,7 @@
 package dadm.scaffold.space;
 
+import android.graphics.drawable.Drawable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,10 +22,13 @@ public class SpaceShipPlayer extends Sprite {
     private int maxX;
     private int maxY;
     private double speedFactor;
+    private int ship;
 
 
-    public SpaceShipPlayer(GameEngine gameEngine, GameController gameCont){
-        super(gameEngine, R.drawable.ship);
+    public SpaceShipPlayer(GameEngine gameEngine, GameController gameCont, int d){
+
+        super(gameEngine, d);
+        ship = d;
         speedFactor = pixelFactor * 100d / 1000d; // We want to move at 100px per second on a 400px tall screen
         maxX = gameEngine.width - imageWidth;
         maxY = gameEngine.height - imageHeight;
@@ -105,7 +110,7 @@ public class SpaceShipPlayer extends Sprite {
 
     public void removeObject(GameEngine gameEngine){
         gameEngine.removeGameObject(this);
-        gameEngine.addGameObject(new SpaceShipPlayer(gameEngine,gameController));
+        gameEngine.addGameObject(new SpaceShipPlayer(gameEngine,gameController,ship));
     }
 
     @Override

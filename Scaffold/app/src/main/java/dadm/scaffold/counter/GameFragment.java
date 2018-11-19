@@ -3,6 +3,7 @@ package dadm.scaffold.counter;
 import android.content.DialogInterface;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,8 @@ import dadm.scaffold.space.SpaceShipPlayer;
 
 public class GameFragment extends BaseFragment implements View.OnClickListener {
     private GameEngine theGameEngine;
+    private int ship;
+    private final int[] mArray = new int[4];
 
     public GameFragment() {
     }
@@ -32,6 +35,8 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_game, container, false);
+        ship = getArguments().getInt("ship");
+
         return rootView;
     }
 
@@ -54,7 +59,9 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                 theGameEngine.addGameObject(new FramesPerSecondCounter(theGameEngine));
                 GameController gameController = new GameController(theGameEngine);
                 theGameEngine.addGameObject(gameController);
-                theGameEngine.addGameObject(new SpaceShipPlayer(theGameEngine,gameController));
+                int shipIdentifier = getActivity().getApplicationContext().getResources().getIdentifier("ship"+String.valueOf(ship), "drawable",
+                        getActivity().getApplicationContext().getPackageName());
+                theGameEngine.addGameObject(new SpaceShipPlayer(theGameEngine,gameController,shipIdentifier));
                 theGameEngine.startGame();
             }
         });

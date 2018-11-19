@@ -29,7 +29,11 @@ public class ScaffoldActivity extends AppCompatActivity {
 
     public void startGame() {
         // Navigate the the game fragment, which makes the start automatically
-        navigateToFragment( new GameFragment());
+        Bundle bundle = new Bundle();
+        GameFragment game = new GameFragment();
+        bundle.putInt("ship",ship);
+        game.setArguments(bundle);
+        navigateToFragment(game);
         points= 0;
     }
 
