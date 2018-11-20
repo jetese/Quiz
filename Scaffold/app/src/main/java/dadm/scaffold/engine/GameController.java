@@ -15,6 +15,7 @@ public class GameController extends GameObject{
     protected int nLives = 3;
     protected int points;
     private final int MARGIN = 100;
+    private final int POINTS_TO_FINISH = 5000;
 
     private WinMessage winmessage;
 
@@ -68,7 +69,7 @@ public class GameController extends GameObject{
             gameEngine.addGameObject(b);
             enemiesProSpawned++;
         }
-        if(points >= 5000){
+        if(points >= POINTS_TO_FINISH){
             gameEngine.addGameObject(winmessage);
             gameEngine.winGame(points);
         }
