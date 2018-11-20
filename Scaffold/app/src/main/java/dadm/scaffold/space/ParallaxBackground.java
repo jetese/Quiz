@@ -29,8 +29,7 @@ public class ParallaxBackground extends GameObject {
     protected Matrix matrix = new Matrix();
 
     public ParallaxBackground(GameEngine gameEngine,int speed,int drawableResId) {
-        Drawable spriteDrawable = gameEngine.getContext().getResources()
-                .getDrawable(drawableResId);
+        Drawable spriteDrawable = gameEngine.getContext().getDrawable(drawableResId);
         bitmap = ((BitmapDrawable) spriteDrawable).getBitmap();
         pixelFactor = gameEngine.pixelFactor;
         speedY = speed*pixelFactor/1000d;

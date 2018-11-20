@@ -17,18 +17,11 @@
         android:id="@+id/btn_play_pause"
         android:layout_marginTop="16dp"
         android:layout_marginRight="@dimen/activity_vertical_margin"
+        android:background="@drawable/buttonshapecholor"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:text="@string/pause" />
 
-    <TextView
-        android:layout_gravity="top|left"
-        android:id="@+id/lives"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lives: " />
     <include layout="@layout/view_joystick"/>
 
 </FrameLayout>

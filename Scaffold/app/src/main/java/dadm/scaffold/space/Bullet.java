@@ -14,7 +14,7 @@ public class Bullet extends Sprite {
     protected double speedY;
 
     protected Bullet(GameEngine gameEngine, SpaceShipPlayer parentPlayer) {
-        super(gameEngine, R.drawable.bullet);
+        super(gameEngine, R.drawable.bulletgood);
         speedFactor = gameEngine.pixelFactor * -300d / 1000d;
         parent = parentPlayer;
     }

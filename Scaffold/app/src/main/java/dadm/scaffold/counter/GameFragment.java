@@ -3,6 +3,7 @@ package dadm.scaffold.counter;
 import android.content.DialogInterface;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
+import android.widget.TextView;
 
 import dadm.scaffold.BaseFragment;
 import dadm.scaffold.R;
@@ -27,7 +29,7 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
     private GameEngine theGameEngine;
     private int ship;
     private final int[] mArray = new int[4];
-
+    private Typeface font;
     public GameFragment() {
     }
 
@@ -36,7 +38,9 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_game, container, false);
         ship = getArguments().getInt("ship");
-
+        TextView txt = (TextView) rootView.findViewById(R.id.btn_play_pause);
+        font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/azonix.otf");
+        txt.setTypeface(font);
         return rootView;
     }
 
@@ -54,14 +58,12 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                 GameView gameView = (GameView) getView().findViewById(R.id.gameView);
                 theGameEngine = new GameEngine(getActivity(), gameView);
                 theGameEngine.setTheInputController(new JoystickInputController(getView()));
-
-                theGameEngine.addGameObject(new ParallaxBackground(theGameEngine, 20, R.drawable.maxresdefault));
                 theGameEngine.addGameObject(new FramesPerSecondCounter(theGameEngine));
-                GameController gameController = new GameController(theGameEngine);
-                theGameEngine.addGameObject(gameController);
+
                 int shipIdentifier = getActivity().getApplicationContext().getResources().getIdentifier("ship"+String.valueOf(ship), "drawable",
                         getActivity().getApplicationContext().getPackageName());
-                theGameEngine.addGameObject(new SpaceShipPlayer(theGameEngine,gameController,shipIdentifier));
+                theGameEngine.addGameObject(new GameController(theGameEngine,shipIdentifier,20, R.drawable.maxresdefault,font));
+
                 theGameEngine.startGame();
             }
         });
@@ -101,9 +103,10 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
 
     private void pauseGameAndShowPauseDialog() {
         theGameEngine.pauseGame();
+
         new AlertDialog.Builder(getActivity())
-                .setTitle(R.string.pause_dialog_title)
-                .setMessage(R.string.pause_dialog_message)
+                .setTitle("Game paused")
+                .setMessage("Press resume to play again")
                 .setPositiveButton(R.string.resume, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -128,6 +131,9 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                 .create()
                 .show();
 
+        //TextView textView = (TextView) dialog.findViewById(android.R.id.message);
+        //Typeface face=Typeface.createFromAsset(getAssets(),"fonts/FONT");
+        //textView.setTypeface(face);
     }
 
     private void playOrPause() {

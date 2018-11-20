@@ -1,19 +1,24 @@
-package dadm.scaffold.engine;
+package dadm.scaffold.space;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 
-public class WinMessage extends GameObject{
+import dadm.scaffold.engine.GameEngine;
+import dadm.scaffold.engine.GameObject;
+
+public class WinMessage extends GameObject {
     private final float textWidth;
     private final float textHeight;
 
     private Paint paint;
-
+    private Typeface plain;
 
     private String points = "Points: 0";
 
-    public WinMessage(GameEngine gameEngine) {
+    public WinMessage(GameEngine gameEngine,Typeface font) {
+        plain = font;
         paint = new Paint();
         paint.setTextAlign(Paint.Align.CENTER);
         textHeight = (float) (100 * gameEngine.pixelFactor);
@@ -35,6 +40,7 @@ public class WinMessage extends GameObject{
     public void onDraw(Canvas canvas) {
 
         paint.setColor(Color.YELLOW);
+        paint.setTypeface(plain);;
         canvas.drawText("YOU WIN!", canvas.getWidth()/2, canvas.getHeight()/2, paint);
     }
 }

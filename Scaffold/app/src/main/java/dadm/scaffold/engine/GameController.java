@@ -1,15 +1,19 @@
 package dadm.scaffold.engine;
 
 import android.graphics.Canvas;
+import android.graphics.Typeface;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import dadm.scaffold.space.Lives;
+import dadm.scaffold.space.ParallaxBackground;
 import dadm.scaffold.space.Score;
 import dadm.scaffold.space.Enemy;
 import dadm.scaffold.space.EnemyPro;
 import dadm.scaffold.space.EnemyWeak;
+import dadm.scaffold.space.SpaceShipPlayer;
+import dadm.scaffold.space.WinMessage;
 
 public class GameController extends GameObject{
     protected int currentMillis;
@@ -21,18 +25,27 @@ public class GameController extends GameObject{
 
     private WinMessage winmessage;
 
+    private ParallaxBackground background;
     private Score score;
+    private SpaceShipPlayer player;
     private List<Enemy> enemyPool = new ArrayList<>();
     private Lives[] lives = new Lives[nLives];
     private final long TIME_BETWEEN_ENEMIES = 500;
 
-    public GameController(GameEngine engine){
-        winmessage = new WinMessage(engine);
+    public GameController(GameEngine engine, int shipDrawable, int backGroundVel, int BackgroundDrawable, Typeface font){
+        winmessage = new WinMessage(engine,font);
         currentMillis = 0;
         enemiesSpawned = 15;
         points = 0;
-        score = new Score(engine);
+
+
+        background = new ParallaxBackground(engine,backGroundVel,BackgroundDrawable);
+        engine.addGameObject(background);
+        player = new SpaceShipPlayer(engine,this,shipDrawable);
+        engine.addGameObject(player);
+        score = new Score(engine,font);
         engine.addGameObject(score);
+
         for (int i=0; i<enemiesSpawned; i++) {
             if(i%4!=0){
                 enemyPool.add(new EnemyWeak(this,engine ));
@@ -43,7 +56,8 @@ public class GameController extends GameObject{
             enemyPool.get(i).init(engine);
         }
         for(int i=0; i<lives.length; i++){
-            lives[i] = new Lives(this,engine,i*MARGIN,i);
+            lives[i] = new Lives(
+                    this,engine,i*MARGIN,i);
             engine.addGameObject(lives[i]);
         }
 

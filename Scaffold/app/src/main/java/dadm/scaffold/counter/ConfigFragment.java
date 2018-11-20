@@ -1,9 +1,11 @@
 package dadm.scaffold.counter;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import dadm.scaffold.BaseFragment;
 import dadm.scaffold.R;
@@ -19,6 +21,10 @@ public class ConfigFragment extends BaseFragment implements View.OnClickListener
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_ship, container, false);
         ship = 0;
+        TextView txt = (TextView) rootView.findViewById(R.id.textView);
+        Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/azonix.otf");
+        txt.setTypeface(font);
+
         return rootView;
     }
 

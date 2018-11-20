@@ -13,7 +13,7 @@ public class Lives extends Sprite {
     private final GameController mController;
     private final int MARGIN = 0;
     
-    protected Lives(GameController gameController, GameEngine engine, int posx, int posy) {
+    public Lives(GameController gameController, GameEngine engine, int posx, int posy) {
         super(engine, R.drawable.heart3);
         mController = gameController;
 

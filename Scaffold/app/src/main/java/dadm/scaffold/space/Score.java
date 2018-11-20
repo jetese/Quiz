@@ -3,6 +3,7 @@ package dadm.scaffold.space;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.GameObject;
@@ -12,11 +13,12 @@ public class Score extends GameObject {
     private final float textHeight;
 
     private Paint paint;
-
+    private Typeface plain;
 
     private String points = "Points: 0";
 
-    public Score(GameEngine gameEngine) {
+    public Score(GameEngine gameEngine, Typeface font) {
+        plain = font;
         paint = new Paint();
         paint.setTextAlign(Paint.Align.CENTER);
         textHeight = (float) (50 * gameEngine.pixelFactor);
@@ -38,6 +40,7 @@ public class Score extends GameObject {
     public void onDraw(Canvas canvas) {
 
         paint.setColor(Color.WHITE);
+        paint.setTypeface(plain);;
         canvas.drawText(points, canvas.getWidth()/2, textHeight/2 + 20, paint);
     }
 
