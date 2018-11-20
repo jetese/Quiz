@@ -1,43 +1,19 @@
 package dadm.scaffold.space;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import dadm.scaffold.R;
 import dadm.scaffold.engine.GameController;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.ScreenGameObject;
-import dadm.scaffold.engine.Sprite;
 
-public class EnemyPro extends Enemy {
+public class EnemyWeak extends Enemy{
     private double speedX;
     private double speedY;
     private int life;
-    private static final int INITIAL_BULLET_POOL_AMOUNT = 6;
-    private static final long TIME_BETWEEN_BULLETS = 500;
-    List<EnemyBullet> bullets = new ArrayList<EnemyBullet>();
-    private long timeSinceLastFire;
-
-    public EnemyPro(GameController gameController, GameEngine
+    public EnemyWeak(GameController gameController, GameEngine
             gameEngine) {
-        super(gameEngine, R.drawable.enemypro,gameController);
-    }
-
-    private void initBulletPool(GameEngine gameEngine) {
-        for (int i=0; i<INITIAL_BULLET_POOL_AMOUNT; i++) {
-            bullets.add(new EnemyBullet(gameEngine));
-        }
-    }
-    private EnemyBullet getBullet() {
-        if (bullets.isEmpty()) {
-            return null;
-        }
-        return bullets.remove(0);
-    }
-
-    void releaseBullet(EnemyBullet bullet) {
-        bullets.add(bullet);
+        super(gameEngine, R.drawable.enemy, gameController);
     }
 
     @Override
@@ -50,7 +26,6 @@ public class EnemyPro extends Enemy {
     {
         positionX += speedX * elapsedMillis;
         positionY += speedY * elapsedMillis;
-        normalFiring(elapsedMillis,gameEngine);
         // Check of the sprite goes out of the screen
         if (positionY > gameEngine.height) {
             // Return to the pool
@@ -68,7 +43,6 @@ public class EnemyPro extends Enemy {
     @Override
     public void init(GameEngine gameEngine) {
         // They initialize in a [-30, 30] degrees angle
-        initBulletPool(gameEngine);
         double angle =
                 rnd.nextDouble()*Math.PI/3d-Math.PI/6d;
         speedX = speed* Math.sin(angle);
@@ -79,7 +53,7 @@ public class EnemyPro extends Enemy {
         // They initialize outside of the screen vertically
         positionY = -imageHeight;
         rotation = 180;
-        life = 2;
+        life = 1;
     }
 
 
@@ -88,29 +62,14 @@ public class EnemyPro extends Enemy {
     public void onCollision(GameEngine gameEngine,
                             ScreenGameObject otherObject) {
 
-        if (otherObject instanceof Bullet || otherObject instanceof  BulletPro) {
+        if (otherObject instanceof Bullet || otherObject instanceof BulletPro) {
             // Remove both from the game (and return them to their pools)
             life --;
             if (life <=0){
-                mController.addScore(300);
+                mController.addScore(100);
                 removeObject(gameEngine);
             }
 
-        }
-    }
-
-    private void normalFiring(long elapsedMillis, GameEngine gameEngine) {
-        if (timeSinceLastFire > TIME_BETWEEN_BULLETS) {
-            EnemyBullet bullet = getBullet();
-            if (bullet == null) {
-                return;
-            }
-            bullet.init(this, positionX + imageWidth/2, positionY);
-            gameEngine.addGameObject(bullet);
-            timeSinceLastFire = 0;
-        }
-        else {
-            timeSinceLastFire += elapsedMillis;
         }
     }
 }

@@ -21,8 +21,6 @@ public class BulletPro extends Sprite {
         if (otherObject instanceof Enemy) {
             // Remove both from the game (and return them to their pools)
             removeObject(gameEngine);
-            Enemy a = (Enemy) otherObject;
-            a.removeObject(gameEngine);
         }
     }
 
