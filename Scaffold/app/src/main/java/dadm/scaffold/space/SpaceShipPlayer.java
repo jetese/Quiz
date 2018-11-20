@@ -15,9 +15,12 @@ import dadm.scaffold.input.InputController;
 public class SpaceShipPlayer extends Sprite {
 
     private static final int INITIAL_BULLET_POOL_AMOUNT = 6;
-    private static final long TIME_BETWEEN_BULLETS = 250;
+    private static final int INITIAL_BULLETPRO_POOL_AMOUNT = 12;
+    private static final long TIME_BETWEEN_BULLETS = 500;
     List<Bullet> bullets = new ArrayList<Bullet>();
+    List<BulletPro> bulletPros = new ArrayList<BulletPro>();
     private long timeSinceLastFire;
+    private long timeSinceLastFirePro;
     private GameController gameController;
     private int maxX;
     private int maxY;
@@ -35,11 +38,18 @@ public class SpaceShipPlayer extends Sprite {
         startGame();
         gameController = gameCont;
         initBulletPool(gameEngine);
+        initBulleProtPool(gameEngine);
     }
 
     private void initBulletPool(GameEngine gameEngine) {
         for (int i=0; i<INITIAL_BULLET_POOL_AMOUNT; i++) {
             bullets.add(new Bullet(gameEngine));
+        }
+    }
+
+    private void initBulleProtPool(GameEngine gameEngine) {
+        for (int i=0; i<INITIAL_BULLETPRO_POOL_AMOUNT; i++) {
+            bulletPros.add(new BulletPro(gameEngine));
         }
     }
 
@@ -50,8 +60,19 @@ public class SpaceShipPlayer extends Sprite {
         return bullets.remove(0);
     }
 
+    private BulletPro getBulletPro(){
+        if(bulletPros.isEmpty()){
+            return null;
+        }
+        return bulletPros.remove(0);
+    }
+
     void releaseBullet(Bullet bullet) {
         bullets.add(bullet);
+    }
+
+    void releaseBulletPro(BulletPro bullet) {
+        bulletPros.add(bullet);
     }
 
 
@@ -65,6 +86,7 @@ public class SpaceShipPlayer extends Sprite {
     public void onUpdate(long elapsedMillis, GameEngine gameEngine) {
         // Get the info from the inputController
         updatePosition(elapsedMillis, gameEngine.theInputController);
+        normalFiring(elapsedMillis,gameEngine);
         checkFiring(elapsedMillis, gameEngine);
 
 
@@ -93,8 +115,8 @@ public class SpaceShipPlayer extends Sprite {
 
     }
 
-    private void checkFiring(long elapsedMillis, GameEngine gameEngine) {
-        if (gameEngine.theInputController.isFiring && timeSinceLastFire > TIME_BETWEEN_BULLETS) {
+    private void normalFiring(long elapsedMillis, GameEngine gameEngine) {
+        if (timeSinceLastFire > TIME_BETWEEN_BULLETS) {
             Bullet bullet = getBullet();
             if (bullet == null) {
                 return;
@@ -105,6 +127,27 @@ public class SpaceShipPlayer extends Sprite {
         }
         else {
             timeSinceLastFire += elapsedMillis;
+        }
+    }
+
+    private void checkFiring(long elapsedMillis, GameEngine gameEngine) {
+        if (gameEngine.theInputController.isFiring && timeSinceLastFirePro > TIME_BETWEEN_BULLETS) {
+            BulletPro bullet = getBulletPro();
+            if (bullet == null) {
+                return;
+            }
+            BulletPro bullet2 = getBulletPro();
+            if (bullet == null) {
+                return;
+            }
+            bullet.init(this, positionX + imageWidth/2, positionY,0);
+            bullet2.init(this, positionX + imageWidth/2, positionY,1);
+            gameEngine.addGameObject(bullet);
+            gameEngine.addGameObject(bullet2);
+            timeSinceLastFirePro = 0;
+        }
+        else {
+            timeSinceLastFirePro += elapsedMillis;
         }
     }
 

@@ -77,7 +77,7 @@ public class Asteroid extends Sprite {
     public void onCollision(GameEngine gameEngine,
                             ScreenGameObject otherObject) {
 
-        if (otherObject instanceof Bullet) {
+        if (otherObject instanceof Bullet || otherObject instanceof  BulletPro) {
             // Remove both from the game (and return them to their pools)
             mController.addScore(100);
             
