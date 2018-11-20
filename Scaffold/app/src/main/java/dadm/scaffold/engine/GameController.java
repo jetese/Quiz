@@ -16,6 +16,8 @@ public class GameController extends GameObject{
     protected int points;
     private final int MARGIN = 100;
 
+    private WinMessage winmessage;
+
     private Score score;
     private List<Enemy> enemyPool = new ArrayList<>();
     private List<EnemyPro> enemyProPool = new ArrayList<>();
@@ -24,6 +26,7 @@ public class GameController extends GameObject{
     private final long TIME_BETWEEN_ENEMIES_PRO = 2500;
 
     public GameController(GameEngine engine){
+        winmessage = new WinMessage(engine);
         currentMillis = 0;
         enemiesSpawned = 10;
         enemiesProSpawned = 5;
@@ -64,6 +67,10 @@ public class GameController extends GameObject{
             b.init(gameEngine);
             gameEngine.addGameObject(b);
             enemiesProSpawned++;
+        }
+        if(points >= 5000){
+            gameEngine.addGameObject(winmessage);
+            gameEngine.winGame(points);
         }
     }
 

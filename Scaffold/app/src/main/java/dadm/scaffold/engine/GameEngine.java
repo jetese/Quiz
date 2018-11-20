@@ -2,12 +2,17 @@ package dadm.scaffold.engine;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import dadm.scaffold.ScaffoldActivity;
 import dadm.scaffold.input.InputController;
+import dadm.scaffold.space.Bullet;
+import dadm.scaffold.space.Enemy;
+import dadm.scaffold.space.EnemyPro;
 import dadm.scaffold.space.SpaceShipPlayer;
 
 public class GameEngine {
@@ -18,10 +23,12 @@ public class GameEngine {
     private List<GameObject> objectsToRemove = new ArrayList<GameObject>();
     private List<ScreenGameObject> collisionableObjects = new ArrayList<>();
 
+
     private UpdateThread theUpdateThread;
     private DrawThread theDrawThread;
     public InputController theInputController;
     private final GameView theGameView;
+    private int punt;
 
     public boolean pause;
 
@@ -140,12 +147,14 @@ public class GameEngine {
                 //gameObjects.remove(objectsToRemove.remove(0));
                 GameObject objectToRemove = objectsToRemove.remove(0);
                 gameObjects.remove(objectToRemove);
+                if(objectToRemove instanceof ScreenGameObject)
                 collisionableObjects.remove(objectToRemove);
             }
             while (!objectsToAdd.isEmpty()) {
                 //gameObjects.add(objectsToAdd.remove(0));
                 GameObject gameObjecToAdd = objectsToAdd.remove(0);
                 gameObjects.add(gameObjecToAdd);
+                if(gameObjecToAdd instanceof ScreenGameObject)
                 collisionableObjects.add((ScreenGameObject) gameObjecToAdd);
             }
         }
@@ -174,6 +183,22 @@ public class GameEngine {
     public void finishGame(int points){
         pause = false;
         ((ScaffoldActivity)mainActivity).finishGame(points);
+
+    }
+
+    public void winGame(int points){
+        stopGame();
+        punt = points;
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        // your code here
+                        finishGame(punt);
+                    }
+                },
+                3000
+        );
 
     }
 }
