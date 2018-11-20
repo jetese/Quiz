@@ -1,15 +1,19 @@
-package dadm.scaffold.engine;
+package dadm.scaffold.space;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import dadm.scaffold.R;
+import dadm.scaffold.engine.GameController;
+import dadm.scaffold.engine.GameEngine;
+import dadm.scaffold.engine.ScreenGameObject;
+import dadm.scaffold.engine.Sprite;
 
-public class Lives extends Sprite{
+public class Lives extends Sprite {
     private final GameController mController;
     private final int MARGIN = 0;
     
-    protected Lives(GameController gameController, GameEngine engine,int posx, int posy) {
+    protected Lives(GameController gameController, GameEngine engine, int posx, int posy) {
         super(engine, R.drawable.heart3);
         mController = gameController;
 

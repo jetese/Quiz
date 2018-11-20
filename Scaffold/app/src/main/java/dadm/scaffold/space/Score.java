@@ -1,10 +1,13 @@
-package dadm.scaffold.engine;
+package dadm.scaffold.space;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-public class Score extends GameObject{
+import dadm.scaffold.engine.GameEngine;
+import dadm.scaffold.engine.GameObject;
+
+public class Score extends GameObject {
     private final float textWidth;
     private final float textHeight;
 

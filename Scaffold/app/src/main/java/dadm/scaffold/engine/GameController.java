@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import java.util.ArrayList;
 import java.util.List;
 
+import dadm.scaffold.space.Lives;
+import dadm.scaffold.space.Score;
 import dadm.scaffold.space.Enemy;
 import dadm.scaffold.space.EnemyPro;
 import dadm.scaffold.space.EnemyWeak;

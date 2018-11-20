@@ -11,9 +11,6 @@ import dadm.scaffold.engine.ScreenGameObject;
 import dadm.scaffold.engine.Sprite;
 
 public class EnemyPro extends Enemy {
-    private double speedX;
-    private double speedY;
-    private int life;
     private static final int INITIAL_BULLET_POOL_AMOUNT = 6;
     private static final long TIME_BETWEEN_BULLETS = 500;
     List<EnemyBullet> bullets = new ArrayList<EnemyBullet>();
@@ -22,6 +19,8 @@ public class EnemyPro extends Enemy {
     public EnemyPro(GameController gameController, GameEngine
             gameEngine) {
         super(gameEngine, R.drawable.enemypro,gameController);
+        lives = 2;
+        points = 300;
     }
 
     private void initBulletPool(GameEngine gameEngine) {
@@ -79,24 +78,7 @@ public class EnemyPro extends Enemy {
         // They initialize outside of the screen vertically
         positionY = -imageHeight;
         rotation = 180;
-        life = 2;
-    }
-
-
-
-    @Override
-    public void onCollision(GameEngine gameEngine,
-                            ScreenGameObject otherObject) {
-
-        if (otherObject instanceof Bullet || otherObject instanceof  BulletPro) {
-            // Remove both from the game (and return them to their pools)
-            life --;
-            if (life <=0){
-                mController.addScore(300);
-                removeObject(gameEngine);
-            }
-
-        }
+        lives = 2;
     }
 
     private void normalFiring(long elapsedMillis, GameEngine gameEngine) {

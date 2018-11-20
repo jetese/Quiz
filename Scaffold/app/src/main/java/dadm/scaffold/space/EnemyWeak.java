@@ -8,12 +8,12 @@ import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.ScreenGameObject;
 
 public class EnemyWeak extends Enemy{
-    private double speedX;
-    private double speedY;
-    private int life;
+
     public EnemyWeak(GameController gameController, GameEngine
             gameEngine) {
         super(gameEngine, R.drawable.enemy, gameController);
+        lives = 1;
+        points = 100;
     }
 
     @Override
@@ -53,23 +53,6 @@ public class EnemyWeak extends Enemy{
         // They initialize outside of the screen vertically
         positionY = -imageHeight;
         rotation = 180;
-        life = 1;
-    }
-
-
-
-    @Override
-    public void onCollision(GameEngine gameEngine,
-                            ScreenGameObject otherObject) {
-
-        if (otherObject instanceof Bullet || otherObject instanceof BulletPro) {
-            // Remove both from the game (and return them to their pools)
-            life --;
-            if (life <=0){
-                mController.addScore(100);
-                removeObject(gameEngine);
-            }
-
-        }
+        lives = 1;
     }
 }
