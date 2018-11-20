@@ -1,7 +1,5 @@
 package dadm.scaffold.space;
 
-import java.util.Random;
-
 import dadm.scaffold.R;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.ScreenGameObject;
@@ -20,11 +18,17 @@ public class BulletPro extends Sprite {
 
     @Override
     public void onCollision(GameEngine gameEngine, ScreenGameObject otherObject) {
-        if (otherObject instanceof Asteroid) {
+        if (otherObject instanceof Enemy) {
             // Remove both from the game (and return them to their pools)
             removeObject(gameEngine);
-            Asteroid a = (Asteroid) otherObject;
+            Enemy a = (Enemy) otherObject;
             a.removeObject(gameEngine);
+        }
+        if (otherObject instanceof EnemyPro) {
+            // Remove both from the game (and return them to their pools)
+            removeObject(gameEngine);
+            EnemyPro b = (EnemyPro) otherObject;
+            b.removeObject(gameEngine);
         }
     }
 

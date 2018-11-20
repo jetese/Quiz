@@ -1,16 +1,13 @@
 package dadm.scaffold.engine;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import dadm.scaffold.ScaffoldActivity;
-import dadm.scaffold.counter.GameFragment;
 import dadm.scaffold.input.InputController;
-import dadm.scaffold.space.Asteroid;
 import dadm.scaffold.space.SpaceShipPlayer;
 
 public class GameEngine {

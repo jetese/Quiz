@@ -1,11 +1,8 @@
 package dadm.scaffold.space;
 
-import android.graphics.drawable.Drawable;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import dadm.scaffold.R;
 import dadm.scaffold.engine.GameController;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.ScreenGameObject;
@@ -159,11 +156,23 @@ public class SpaceShipPlayer extends Sprite {
     @Override
     public void onCollision(GameEngine gameEngine,
                             ScreenGameObject otherObject) {
-        if (otherObject instanceof Asteroid) {
+        if (otherObject instanceof Enemy ) {
             // Remove both from the game (and return them to their pools)
             removeObject(gameEngine);
-            Asteroid a = (Asteroid) otherObject;
+            Enemy a = (Enemy) otherObject;
             a.removeObject(gameEngine);
+            gameController.decreaseLives(gameEngine);
+        }
+        else if (otherObject instanceof EnemyPro){
+            removeObject(gameEngine);
+            EnemyPro b = (EnemyPro) otherObject;
+            b.removeObject(gameEngine);
+            gameController.decreaseLives(gameEngine);
+        }
+        else if (otherObject instanceof EnemyBullet){
+            removeObject(gameEngine);
+            EnemyBullet c = (EnemyBullet) otherObject;
+            c.removeObject(gameEngine);
             gameController.decreaseLives(gameEngine);
         }
     }

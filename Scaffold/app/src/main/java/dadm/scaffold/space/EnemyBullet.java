@@ -5,13 +5,13 @@ import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.ScreenGameObject;
 import dadm.scaffold.engine.Sprite;
 
-public class Bullet extends Sprite {
+public class EnemyBullet extends Sprite {
 
     private double speedFactor;
 
-    private SpaceShipPlayer parent;
+    private EnemyPro parent;
 
-    public Bullet(GameEngine gameEngine){
+    public EnemyBullet(GameEngine gameEngine){
         super(gameEngine, R.drawable.bullet);
 
         speedFactor = gameEngine.pixelFactor * -300d / 1000d;
@@ -22,7 +22,7 @@ public class Bullet extends Sprite {
 
     @Override
     public void onUpdate(long elapsedMillis, GameEngine gameEngine) {
-        positionY += speedFactor * elapsedMillis;
+        positionY -= speedFactor * elapsedMillis;
         if (positionY < -imageHeight) {
             gameEngine.removeGameObject(this);
             // And return it to the pool
@@ -36,9 +36,9 @@ public class Bullet extends Sprite {
     }
 
 
-    public void init(SpaceShipPlayer parentPlayer, double initPositionX, double initPositionY) {
+    public void init(EnemyPro parentPlayer, double initPositionX, double initPositionY) {
         positionX = initPositionX - imageWidth/2;
-        positionY = initPositionY - imageHeight/2;
+        positionY = initPositionY + 2*imageHeight;
         parent = parentPlayer;
     }
 
@@ -50,17 +50,11 @@ public class Bullet extends Sprite {
     @Override
     public void onCollision(GameEngine gameEngine,
                             ScreenGameObject otherObject) {
-        if (otherObject instanceof Enemy) {
+        if (otherObject instanceof SpaceShipPlayer) {
             // Remove both from the game (and return them to their pools)
             removeObject(gameEngine);
-            Enemy a = (Enemy) otherObject;
+            SpaceShipPlayer a = (SpaceShipPlayer) otherObject;
             a.removeObject(gameEngine);
-        }
-        if (otherObject instanceof EnemyPro) {
-            // Remove both from the game (and return them to their pools)
-            removeObject(gameEngine);
-            EnemyPro b = (EnemyPro) otherObject;
-            b.removeObject(gameEngine);
         }
     }
 }
