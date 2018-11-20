@@ -50,11 +50,11 @@ public class EnemyBullet extends Sprite {
     @Override
     public void onCollision(GameEngine gameEngine,
                             ScreenGameObject otherObject) {
-        if (otherObject instanceof SpaceShipPlayer) {
+        /*if (otherObject instanceof SpaceShipPlayer) {
             // Remove both from the game (and return them to their pools)
             removeObject(gameEngine);
             SpaceShipPlayer a = (SpaceShipPlayer) otherObject;
             a.removeObject(gameEngine);
-        }
+        }*/
     }
 }

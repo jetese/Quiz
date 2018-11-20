@@ -26,7 +26,7 @@ public class EnemyPro extends Sprite {
         rnd = new Random();
         speed = 200d*pixelFactor/1000d;
         mController = gameController;
-        initBulletPool(gameEngine);
+        //initBulletPool(gameEngine);
     }
 
     private void initBulletPool(GameEngine gameEngine) {
