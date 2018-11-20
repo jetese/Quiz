@@ -16,6 +16,7 @@ public class EnemyPro extends Sprite {
     private double speedX;
     private double speedY;
     private Random rnd;
+    private int life;
     private static final int INITIAL_BULLET_POOL_AMOUNT = 6;
     private static final long TIME_BETWEEN_BULLETS = 500;
     List<EnemyBullet> bullets = new ArrayList<EnemyBullet>();
@@ -83,6 +84,7 @@ public class EnemyPro extends Sprite {
         // They initialize outside of the screen vertically
         positionY = -imageHeight;
         rotation = 180;
+        life = 2;
 
     }
 
@@ -95,10 +97,25 @@ public class EnemyPro extends Sprite {
     public void onCollision(GameEngine gameEngine,
                             ScreenGameObject otherObject) {
 
-        if (otherObject instanceof Bullet || otherObject instanceof  BulletPro) {
+        if (otherObject instanceof Bullet ) {
             // Remove both from the game (and return them to their pools)
-            mController.addScore(300);
+            Bullet b = (Bullet) otherObject;
+            b.removeObject(gameEngine);
+            life --;
+            if (life <=0){
+                mController.addScore(300);
+                removeObject(gameEngine);
+            }
 
+        }
+        else if(otherObject instanceof  BulletPro){
+            BulletPro b = (BulletPro) otherObject;
+            b.removeObject(gameEngine);
+            life --;
+            if (life <=0){
+                mController.addScore(300);
+                removeObject(gameEngine);
+            }
         }
     }
 

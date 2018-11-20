@@ -56,11 +56,5 @@ public class Bullet extends Sprite {
             Enemy a = (Enemy) otherObject;
             a.removeObject(gameEngine);
         }
-        if (otherObject instanceof EnemyPro) {
-            // Remove both from the game (and return them to their pools)
-            removeObject(gameEngine);
-            EnemyPro b = (EnemyPro) otherObject;
-            b.removeObject(gameEngine);
-        }
     }
 }
