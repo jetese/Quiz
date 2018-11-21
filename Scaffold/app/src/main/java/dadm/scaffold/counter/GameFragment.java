@@ -1,5 +1,6 @@
 package dadm.scaffold.counter;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -30,6 +31,7 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
     private int ship;
     private final int[] mArray = new int[4];
     private Typeface font;
+    public AlertDialog dialog;
     public GameFragment() {
     }
 
@@ -103,8 +105,42 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
 
     private void pauseGameAndShowPauseDialog() {
         theGameEngine.pauseGame();
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+        View mView = getLayoutInflater().inflate(R.layout.alertdialog,null);
+        mBuilder.setView(mView);
+        TextView aux =  (TextView) mView.findViewById(R.id.textView);
+        aux.setTypeface(font);
+        aux = mView.findViewById(R.id.btn_stop);
+        aux.setTypeface(font);
+        aux = mView.findViewById(R.id.btn_resume);
+        aux.setTypeface(font);
 
-        new AlertDialog.Builder(getActivity())
+        Button resume = (Button)  mView.findViewById(R.id.btn_resume);
+        resume.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                dialog.dismiss();
+                theGameEngine.resumeGame();
+            }
+        });
+        Button stop = (Button)  mView.findViewById(R.id.btn_stop);
+        stop.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                dialog.dismiss();
+                theGameEngine.stopGame();
+                ((ScaffoldActivity)getActivity()).navigateBack();
+            }
+        });
+
+        dialog = mBuilder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                theGameEngine.resumeGame();
+            }
+        }).create();
+        dialog.show();
+        /*new AlertDialog.Builder(getActivity())
                 .setTitle("Game paused")
                 .setMessage("Press resume to play again")
                 .setPositiveButton(R.string.resume, new DialogInterface.OnClickListener() {
@@ -130,7 +166,7 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                 })
                 .create()
                 .show();
-
+        */
         //TextView textView = (TextView) dialog.findViewById(android.R.id.message);
         //Typeface face=Typeface.createFromAsset(getAssets(),"fonts/FONT");
         //textView.setTypeface(face);
