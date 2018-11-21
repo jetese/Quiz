@@ -107,7 +107,6 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
         theGameEngine.pauseGame();
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
         View mView = getLayoutInflater().inflate(R.layout.alertdialog,null);
-        mBuilder.setView(mView);
         TextView aux =  (TextView) mView.findViewById(R.id.textView);
         aux.setTypeface(font);
         aux = mView.findViewById(R.id.btn_stop);
@@ -132,6 +131,8 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                 ((ScaffoldActivity)getActivity()).navigateBack();
             }
         });
+        mBuilder.setView(mView);
+
 
         dialog = mBuilder.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
