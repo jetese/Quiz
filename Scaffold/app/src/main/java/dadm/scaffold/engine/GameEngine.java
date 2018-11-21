@@ -17,7 +17,7 @@ import dadm.scaffold.space.SpaceShipPlayer;
 
 public class GameEngine {
 
-
+    //Listas de gameObjects, y de Objetos colisionables
     private List<GameObject> gameObjects = new ArrayList<GameObject>();
     private List<GameObject> objectsToAdd = new ArrayList<GameObject>();
     private List<GameObject> objectsToRemove = new ArrayList<GameObject>();
@@ -28,6 +28,8 @@ public class GameEngine {
     private DrawThread theDrawThread;
     public InputController theInputController;
     private final GameView theGameView;
+
+    //Puntuación de la partida
     private int punt;
 
     public boolean pause;
@@ -53,6 +55,7 @@ public class GameEngine {
 
     }
 
+    //Función que comprueba si dos objetos colisionables están colisionando
     private void checkCollisions() {
         int numObjects = collisionableObjects.size();
         for (int i = 0; i < numObjects; i++) {
@@ -60,7 +63,6 @@ public class GameEngine {
             for (int j = i + 1; j < numObjects; j++) {
                 ScreenGameObject objectB = collisionableObjects.get(j);
                 if (objectA.checkCollision(objectB)) {
-                    System.out.println(objectA+" collide with "+objectB);
                     objectA.onCollision(this, objectB);
                     objectB.onCollision(this, objectA);
                 }
@@ -124,6 +126,8 @@ public class GameEngine {
             objectsToAdd.add(gameObject);
         } else {
             gameObjects.add(gameObject);
+            //Dado que la nave la inicializamos ahora en el GameController tenemos que
+            //Añadir la primera vez a la lista de colisionables
             if(gameObject instanceof SpaceShipPlayer){
                 collisionableObjects.add((ScreenGameObject) gameObject);
             }
@@ -141,19 +145,24 @@ public class GameEngine {
         for (int i = 0; i < numGameObjects; i++) {
             gameObjects.get(i).onUpdate(elapsedMillis, this);
         }
+
+        //Comprobamos las colisiones en cada update
         checkCollisions();
+
         synchronized (gameObjects) {
             while (!objectsToRemove.isEmpty()) {
-                //gameObjects.remove(objectsToRemove.remove(0));
                 GameObject objectToRemove = objectsToRemove.remove(0);
                 gameObjects.remove(objectToRemove);
+
+                //Eliminamos los objetos colisionables a la lista
                 if(objectToRemove instanceof ScreenGameObject)
                 collisionableObjects.remove(objectToRemove);
             }
             while (!objectsToAdd.isEmpty()) {
-                //gameObjects.add(objectsToAdd.remove(0));
                 GameObject gameObjecToAdd = objectsToAdd.remove(0);
                 gameObjects.add(gameObjecToAdd);
+
+                //Añadimos los objetos colisionables de la lista
                 if(gameObjecToAdd instanceof ScreenGameObject)
                 collisionableObjects.add((ScreenGameObject) gameObjecToAdd);
             }
@@ -176,16 +185,15 @@ public class GameEngine {
         return theGameView.getContext();
     }
 
-    public void addCollisionable(GameObject object){
-        collisionableObjects.add((ScreenGameObject)object);
-    }
-
+    //Función para finalizar la partida cuando ganas o te matan 3 veces
     public void finishGame(int points){
         pause = false;
         ((ScaffoldActivity)mainActivity).finishGame(points);
 
     }
 
+    //Función que permite que podamos ver el texto de You Win durante tres segundos
+    //antes de pasar al fin de partida
     public void winGame(int points){
         stopGame();
         punt = points;

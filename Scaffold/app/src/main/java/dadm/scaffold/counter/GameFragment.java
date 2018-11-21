@@ -25,13 +25,14 @@ import dadm.scaffold.input.JoystickInputController;
 import dadm.scaffold.space.ParallaxBackground;
 import dadm.scaffold.space.SpaceShipPlayer;
 
-
+//Fragmento del juego
 public class GameFragment extends BaseFragment implements View.OnClickListener {
+
     private GameEngine theGameEngine;
-    private int ship;
-    private final int[] mArray = new int[4];
-    private Typeface font;
-    public AlertDialog dialog;
+    private int ship;   //Nave seleccionada
+    private Typeface font;  //Guardamos la fuente para setearla en el Alertdialog del pause
+    public AlertDialog dialog; // Ventana de pause
+
     public GameFragment() {
     }
 
@@ -39,10 +40,15 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_game, container, false);
+
+        //Obtenemos la nave que se pasa por parámetros
         ship = getArguments().getInt("ship");
+
+        //Cambiamos la fuente del botón pause
         TextView txt = (TextView) rootView.findViewById(R.id.btn_play_pause);
         font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/azonix.otf");
         txt.setTypeface(font);
+
         return rootView;
     }
 
@@ -57,15 +63,23 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                 //Para evitar que sea llamado múltiples veces,
                 //se elimina el listener en cuanto es llamado
                 observer.removeOnGlobalLayoutListener(this);
+
+                //Incicializamos el juego
                 GameView gameView = (GameView) getView().findViewById(R.id.gameView);
                 theGameEngine = new GameEngine(getActivity(), gameView);
                 theGameEngine.setTheInputController(new JoystickInputController(getView()));
                 theGameEngine.addGameObject(new FramesPerSecondCounter(theGameEngine));
 
+                //Obtenemos el identificador del drawable de la nave
                 int shipIdentifier = getActivity().getApplicationContext().getResources().getIdentifier("ship"+String.valueOf(ship), "drawable",
                         getActivity().getApplicationContext().getPackageName());
+
+                //Inicializamos el GameController
+                //El game controller se encarga de inicializar elementos del juego, tale como parallax background, enemigos, nave jugador, score, etc.
+                //Le pasamos la fuente para poder cambiar los textos que se dibujan directamente sobre el canvas ( ganar, puntuación)
                 theGameEngine.addGameObject(new GameController(theGameEngine,shipIdentifier,20, R.drawable.maxresdefault,font));
 
+                //Comenzamos el juego
                 theGameEngine.startGame();
             }
         });
@@ -105,8 +119,12 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
 
     private void pauseGameAndShowPauseDialog() {
         theGameEngine.pauseGame();
+
+        //Creamos un alert dialog customizado con el layout alertdialog
         AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
         View mView = getLayoutInflater().inflate(R.layout.alertdialog,null);
+
+        //Cambiamos la fuente
         TextView aux =  (TextView) mView.findViewById(R.id.textView);
         aux.setTypeface(font);
         aux = mView.findViewById(R.id.btn_stop);
@@ -114,6 +132,7 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
         aux = mView.findViewById(R.id.btn_resume);
         aux.setTypeface(font);
 
+        //Seteamos los ClickListener de los botones
         Button resume = (Button)  mView.findViewById(R.id.btn_resume);
         resume.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -131,9 +150,9 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                 ((ScaffoldActivity)getActivity()).navigateBack();
             }
         });
+
+        //Creamos y mostramos el dialogo de pausa
         mBuilder.setView(mView);
-
-
         dialog = mBuilder.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
@@ -141,36 +160,6 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
             }
         }).create();
         dialog.show();
-        /*new AlertDialog.Builder(getActivity())
-                .setTitle("Game paused")
-                .setMessage("Press resume to play again")
-                .setPositiveButton(R.string.resume, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        theGameEngine.resumeGame();
-                    }
-                })
-                .setNegativeButton(R.string.stop, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        theGameEngine.stopGame();
-                        ((ScaffoldActivity)getActivity()).navigateBack();
-                    }
-                })
-                .setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-                        theGameEngine.resumeGame();
-                    }
-                })
-                .create()
-                .show();
-        */
-        //TextView textView = (TextView) dialog.findViewById(android.R.id.message);
-        //Typeface face=Typeface.createFromAsset(getAssets(),"fonts/FONT");
-        //textView.setTypeface(face);
     }
 
     private void playOrPause() {

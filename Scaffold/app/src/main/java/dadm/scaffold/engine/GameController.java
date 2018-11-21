@@ -15,24 +15,28 @@ import dadm.scaffold.space.EnemyWeak;
 import dadm.scaffold.space.SpaceShipPlayer;
 import dadm.scaffold.space.WinMessage;
 
+//Clase que controla los objetos interactuables del juego
 public class GameController extends GameObject{
     protected int currentMillis;
     protected int enemiesSpawned;
-    protected int nLives = 3;
-    protected int points;
-    private final int MARGIN = 100;
-    private final int POINTS_TO_FINISH = 5000;
 
-    private WinMessage winmessage;
+    protected int nLives = 3;   //Número de vidas del jugador
+    protected int points;       //Puntos del jugador en la partida
 
-    private ParallaxBackground background;
-    private Score score;
-    private SpaceShipPlayer player;
-    private List<Enemy> enemyPool = new ArrayList<>();
-    private Lives[] lives = new Lives[nLives];
-    private final long TIME_BETWEEN_ENEMIES = 500;
+    private final int MARGIN = 100;     //Margen entre los sprites de vidas
+    private final int POINTS_TO_FINISH = 5000;  //Número de puntos para finalizar la partida
+    private final long TIME_BETWEEN_ENEMIES = 500; //Tiempo entre enemigos
+
+    private WinMessage winmessage;  //Mensaje de ganar la partida
+    private ParallaxBackground background;  //Background con movimiento
+    private Score score;                    //Texto de Score de la partida
+    private SpaceShipPlayer player;         //Nave del jugador
+    private List<Enemy> enemyPool = new ArrayList<>();  //Lista de enemigos
+    private Lives[] lives = new Lives[nLives];  //Lista de sprites de vidas
+
 
     public GameController(GameEngine engine, int shipDrawable, int backGroundVel, int BackgroundDrawable, Typeface font){
+        
         winmessage = new WinMessage(engine,font);
         currentMillis = 0;
         enemiesSpawned = 15;

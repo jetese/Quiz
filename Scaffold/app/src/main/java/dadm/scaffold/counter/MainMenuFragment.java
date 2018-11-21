@@ -24,6 +24,8 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main_menu, container, false);
+
+        //Seteamos los textos con la fuente añadida en la carpeta assets/font
         TextView txt = (TextView) rootView.findViewById(R.id.textView);
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/azonix.otf");
         txt.setTypeface(font);
@@ -38,14 +40,13 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //TextView tx = (TextView)view.findViewById(R.id.textView);
-        //Typeface custom_font = Typeface.createFromAsset(getActivity().getAssets(),  "fonts/spiderman.ttf");
-        //tx.setTypeface(custom_font);
 
+        //Seteamos las llamadas de los botones
         view.findViewById(R.id.btn_start).setOnClickListener(this);
         view.findViewById(R.id.btn_config).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Vamos al fragmento de configuración
                 ((ScaffoldActivity)getActivity()).configGame();
             }
         });
@@ -53,6 +54,7 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
+        //Vamos al fragmento de Partida
         ((ScaffoldActivity)getActivity()).startGame();
     }
 
