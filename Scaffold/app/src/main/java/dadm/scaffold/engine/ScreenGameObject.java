@@ -3,6 +3,8 @@ package dadm.scaffold.engine;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
+//Clase abstracta de la que derivan los objetos de la escena
+//Añadimos las colisiones entre dos objetos
 public abstract class ScreenGameObject extends GameObject{
 
     protected double x;

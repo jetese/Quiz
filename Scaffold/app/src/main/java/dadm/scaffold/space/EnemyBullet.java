@@ -5,6 +5,7 @@ import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.ScreenGameObject;
 import dadm.scaffold.engine.Sprite;
 
+//Balas de los enemigos fuertes
 public class EnemyBullet extends Sprite {
 
     private double speedFactor;
@@ -50,11 +51,5 @@ public class EnemyBullet extends Sprite {
     @Override
     public void onCollision(GameEngine gameEngine,
                             ScreenGameObject otherObject) {
-        /*if (otherObject instanceof SpaceShipPlayer) {
-            // Remove both from the game (and return them to their pools)
-            removeObject(gameEngine);
-            SpaceShipPlayer a = (SpaceShipPlayer) otherObject;
-            a.removeObject(gameEngine);
-        }*/
     }
 }

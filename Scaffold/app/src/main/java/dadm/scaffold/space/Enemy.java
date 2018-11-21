@@ -8,6 +8,7 @@ import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.ScreenGameObject;
 import dadm.scaffold.engine.Sprite;
 
+//Clase abstracta que define los enemigos (débiles y fuertes que disparan)
 public abstract class Enemy extends Sprite {
     protected GameController mController;
     protected double speed;

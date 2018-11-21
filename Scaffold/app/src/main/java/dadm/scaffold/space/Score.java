@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.GameObject;
 
+//Clase del texto del score
 public class Score extends GameObject {
     private final float textWidth;
     private final float textHeight;

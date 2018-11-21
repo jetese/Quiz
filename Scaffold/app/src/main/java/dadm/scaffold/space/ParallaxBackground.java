@@ -10,6 +10,7 @@ import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.GameObject;
 import dadm.scaffold.engine.Sprite;
 
+    //Clase del Parallax background
 public class ParallaxBackground extends GameObject {
     private Bitmap bitmap;
     private double speedY;

@@ -10,24 +10,35 @@ import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.ScreenGameObject;
 import dadm.scaffold.engine.Sprite;
 
+//Enemigo fuerte que dispara
 public class EnemyPro extends Enemy {
+
+    //Constantes para balas
     private static final int INITIAL_BULLET_POOL_AMOUNT = 6;
     private static final long TIME_BETWEEN_BULLETS = 500;
+
+    //Lista de balas
     List<EnemyBullet> bullets = new ArrayList<EnemyBullet>();
+
+    //Tiempo entre balas
     private long timeSinceLastFire;
 
     public EnemyPro(GameController gameController, GameEngine
             gameEngine) {
         super(gameEngine, R.drawable.enemypro,gameController);
+        //Inicializamos las vidas del enemigo duro y los puntos
         lives = 2;
         points = 300;
     }
 
+    //Inicialización de las balas de los enemigos
     private void initBulletPool(GameEngine gameEngine) {
         for (int i=0; i<INITIAL_BULLET_POOL_AMOUNT; i++) {
             bullets.add(new EnemyBullet(gameEngine));
         }
     }
+
+    //Obtener balas
     private EnemyBullet getBullet() {
         if (bullets.isEmpty()) {
             return null;
@@ -35,6 +46,7 @@ public class EnemyPro extends Enemy {
         return bullets.remove(0);
     }
 
+    //Añadir balas
     void releaseBullet(EnemyBullet bullet) {
         bullets.add(bullet);
     }
@@ -49,7 +61,11 @@ public class EnemyPro extends Enemy {
     {
         positionX += speedX * elapsedMillis;
         positionY += speedY * elapsedMillis;
+
+        //Disparo de enemigo
         normalFiring(elapsedMillis,gameEngine);
+
+
         // Check of the sprite goes out of the screen
         if (positionY > gameEngine.height) {
             // Return to the pool
@@ -64,7 +80,7 @@ public class EnemyPro extends Enemy {
         onPostUpdate(gameEngine);
     }
 
-    @Override
+    @Override //Inicialización del enemigo
     public void init(GameEngine gameEngine) {
         // They initialize in a [-30, 30] degrees angle
         initBulletPool(gameEngine);
@@ -81,6 +97,7 @@ public class EnemyPro extends Enemy {
         lives = 2;
     }
 
+    // Disparo
     private void normalFiring(long elapsedMillis, GameEngine gameEngine) {
         if (timeSinceLastFire > TIME_BETWEEN_BULLETS) {
             EnemyBullet bullet = getBullet();

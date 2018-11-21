@@ -9,6 +9,7 @@ import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.ScreenGameObject;
 import dadm.scaffold.engine.Sprite;
 
+//Clase de Sprite de vidas
 public class Lives extends Sprite {
     private final GameController mController;
     private final int MARGIN = 0;

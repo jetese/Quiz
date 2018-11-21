@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
+//Clase sprite
 public abstract class Sprite extends ScreenGameObject {
 
     protected double positionX;

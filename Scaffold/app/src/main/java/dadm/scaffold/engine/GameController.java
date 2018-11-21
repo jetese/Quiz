@@ -36,20 +36,23 @@ public class GameController extends GameObject{
 
 
     public GameController(GameEngine engine, int shipDrawable, int backGroundVel, int BackgroundDrawable, Typeface font){
-        
-        winmessage = new WinMessage(engine,font);
+        //Inicialización de variables
         currentMillis = 0;
         enemiesSpawned = 15;
         points = 0;
 
-
+        //Inicialización de gameobjects del juego
+        winmessage = new WinMessage(engine,font);
         background = new ParallaxBackground(engine,backGroundVel,BackgroundDrawable);
-        engine.addGameObject(background);
         player = new SpaceShipPlayer(engine,this,shipDrawable);
-        engine.addGameObject(player);
         score = new Score(engine,font);
+
+        //Addición de los objetos al engine
+        engine.addGameObject(background);
+        engine.addGameObject(player);
         engine.addGameObject(score);
 
+        //Inicializamos la lista de enemigos
         for (int i=0; i<enemiesSpawned; i++) {
             if(i%4!=0){
                 enemyPool.add(new EnemyWeak(this,engine ));
@@ -59,6 +62,8 @@ public class GameController extends GameObject{
             }
             enemyPool.get(i).init(engine);
         }
+
+        //Inicializamos la lista de viidas
         for(int i=0; i<lives.length; i++){
             lives[i] = new Lives(
                     this,engine,i*MARGIN,i);
@@ -82,8 +87,12 @@ public class GameController extends GameObject{
             gameEngine.addGameObject(a);
             enemiesSpawned++;
         }
+
+        //Si llegamos a los puntos de fin de partida
         if(points >= POINTS_TO_FINISH){
+            //Mostramos mensaje de ganar
             gameEngine.addGameObject(winmessage);
+            //Pasamos a finalizas la partida
             gameEngine.winGame(points);
         }
     }
@@ -97,6 +106,7 @@ public class GameController extends GameObject{
         enemyPool.add(a);
     }
 
+    //Función que decrementa las vidas y acaba la partida si son 0
     public void decreaseLives(GameEngine engine){
         nLives--;
         if(nLives>0){
@@ -107,6 +117,7 @@ public class GameController extends GameObject{
         }
     }
 
+    //Función que añade el score a la cantidad actual y actualiza el Sprite
     public void addScore(int p){
         points += p;
         score.updatePoints(points);

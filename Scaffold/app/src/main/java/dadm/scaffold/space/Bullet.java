@@ -7,6 +7,9 @@ import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.ScreenGameObject;
 import dadm.scaffold.engine.Sprite;
 
+//Clase bala para los dos modelos de balas del jugador
+//No he añadido una clase abstracta bala para las balas del enemigo junto con las del jugador
+//ya que difieren más de lo que las asemeja
 public class Bullet extends Sprite {
     protected double speedFactor;
     protected SpaceShipPlayer parent;
@@ -54,6 +57,7 @@ public class Bullet extends Sprite {
         }
     }
 
+    //Inicialización para las balas de 45º en 0 y 1, default para las balas que suben recto
     public void init(SpaceShipPlayer parentPlayer, double initPositionX, double initPositionY, int rot) {
         switch (rot) {
             case 0:

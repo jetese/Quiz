@@ -7,6 +7,7 @@ import dadm.scaffold.engine.GameController;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.ScreenGameObject;
 
+//Enemigo debil con 1 de vida y no dispara
 public class EnemyWeak extends Enemy{
 
     public EnemyWeak(GameController gameController, GameEngine
