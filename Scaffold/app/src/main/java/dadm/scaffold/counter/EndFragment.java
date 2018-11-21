@@ -1,5 +1,6 @@
 package dadm.scaffold.counter;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,13 @@ public class EndFragment extends BaseFragment implements View.OnClickListener  {
         View rootView = inflater.inflate(R.layout.fragment_end_game, container, false);
         TextView score = (TextView)rootView.findViewById(R.id.score);
         score.setText("Score: "+getArguments().getInt("score"));
+        TextView txt = (TextView) rootView.findViewById(R.id.titleGame);
+        Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/azonix.otf");
+        txt.setTypeface(font);
+        score.setTypeface(font);
+        txt = (TextView) rootView.findViewById(R.id.btn_finish);
+        txt.setTypeface(font);
+
         return rootView;
     }
 
