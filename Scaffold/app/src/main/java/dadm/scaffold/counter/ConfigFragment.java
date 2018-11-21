@@ -30,6 +30,7 @@ public class ConfigFragment extends BaseFragment implements View.OnClickListener
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/azonix.otf");
         txt.setTypeface(font);
 
+        //Drawables de las nav
         return rootView;
     }
 
@@ -40,7 +41,7 @@ public class ConfigFragment extends BaseFragment implements View.OnClickListener
         view.findViewById(R.id.ship1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ship =1;
+                ship = R.drawable.ship1;
                 ((ScaffoldActivity)getActivity()).setShip(ship);
                 ((ScaffoldActivity)getActivity()).mainMenu();
             }
@@ -48,7 +49,7 @@ public class ConfigFragment extends BaseFragment implements View.OnClickListener
         view.findViewById(R.id.ship2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ship =2;
+                ship =R.drawable.ship2;
                 ((ScaffoldActivity)getActivity()).setShip(ship);
                 ((ScaffoldActivity)getActivity()).mainMenu();
             }
@@ -56,7 +57,7 @@ public class ConfigFragment extends BaseFragment implements View.OnClickListener
         view.findViewById(R.id.ship3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ship =3;
+                ship =R.drawable.ship3;
                 ((ScaffoldActivity)getActivity()).setShip(ship);
                 ((ScaffoldActivity)getActivity()).mainMenu();
             }
@@ -64,7 +65,7 @@ public class ConfigFragment extends BaseFragment implements View.OnClickListener
         view.findViewById(R.id.ship4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ship =4;
+                ship =R.drawable.ship4;
                 ((ScaffoldActivity)getActivity()).setShip(ship);
                 ((ScaffoldActivity)getActivity()).mainMenu();
             }

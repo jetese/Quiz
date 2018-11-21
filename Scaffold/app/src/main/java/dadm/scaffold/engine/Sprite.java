@@ -52,8 +52,8 @@ public abstract class Sprite extends ScreenGameObject {
                 || x < -width || y < -height) {
             return;
         }
-        paint.setColor(Color.YELLOW);
-        canvas.drawRect(boundingRect, paint);
+        //paint.setColor(Color.YELLOW);
+        //canvas.drawRect(boundingRect, paint);
         matrix.reset();
         matrix.postScale((float) pixelFactor, (float) pixelFactor);
         matrix.postTranslate((float) positionX, (float) positionY);

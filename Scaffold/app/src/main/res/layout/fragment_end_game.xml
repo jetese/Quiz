@@ -10,7 +10,7 @@
         android:layout_gravity="center_horizontal|top"
         style="@android:style/TextAppearance.DeviceDefault.Large"
         android:layout_marginTop="60dp"
-        android:text="Space War"
+        android:text="@string/space_war"
         android:textColor="#fff"
         android:textSize="60sp"
         android:layout_width="wrap_content"
@@ -24,7 +24,7 @@
         android:textColor="#fff"
         android:layout_gravity="center"
         android:textSize="40sp"
-        android:text="Points" />
+        android:text="@string/points" />
 
     <Button
         android:id="@+id/btn_finish"
@@ -33,7 +33,7 @@
         android:layout_marginTop="100dp"
         android:layout_gravity="center"
         android:background="@drawable/buttonshapecholor"
-        android:text="Menu" />
+        android:text="@string/menu" />
 
 
 

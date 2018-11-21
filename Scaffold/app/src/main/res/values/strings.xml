@@ -9,4 +9,10 @@
     <string name="pause_dialog_message">pause message</string>
     <string name="resume">resume</string>
     <string name="stop">stop</string>
+    <string name="ship_selection">Ship selection</string>
+    <string name="todo">TODO</string>
+    <string name="space_war">Space War</string>
+    <string name="config">Config</string>
+    <string name="points">Points</string>
+    <string name="menu">Menu</string>
 </resources>

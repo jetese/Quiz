@@ -57,7 +57,7 @@ public class Bullet extends Sprite {
         }
     }
 
-    //Inicialización para las balas de 45º en 0 y 1, default para las balas que suben recto
+    //Inicialización para las balas de 45º/135º en 0 y 1, default para las balas que suben recto
     public void init(SpaceShipPlayer parentPlayer, double initPositionX, double initPositionY, int rot) {
         switch (rot) {
             case 0:
@@ -73,6 +73,7 @@ public class Bullet extends Sprite {
             default:
                 speedX = 0;
                 speedY = speedFactor;
+                rotation = 0;
                 break;
         }
 

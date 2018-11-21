@@ -70,14 +70,12 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                 theGameEngine.setTheInputController(new JoystickInputController(getView()));
                 theGameEngine.addGameObject(new FramesPerSecondCounter(theGameEngine));
 
-                //Obtenemos el identificador del drawable de la nave
-                int shipIdentifier = getActivity().getApplicationContext().getResources().getIdentifier("ship"+String.valueOf(ship), "drawable",
-                        getActivity().getApplicationContext().getPackageName());
+
 
                 //Inicializamos el GameController
                 //El game controller se encarga de inicializar elementos del juego, tale como parallax background, enemigos, nave jugador, score, etc.
                 //Le pasamos la fuente para poder cambiar los textos que se dibujan directamente sobre el canvas ( ganar, puntuación)
-                theGameEngine.addGameObject(new GameController(theGameEngine,shipIdentifier,20, R.drawable.maxresdefault,font));
+                theGameEngine.addGameObject(new GameController(theGameEngine,ship,20, R.drawable.maxresdefault,font));
 
                 //Comenzamos el juego
                 theGameEngine.startGame();

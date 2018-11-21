@@ -14,7 +14,7 @@ public class ScaffoldActivity extends AppCompatActivity {
 
     private static final String TAG_FRAGMENT = "content";
     private int points;
-    private int ship = 0;
+    private int ship;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +25,10 @@ public class ScaffoldActivity extends AppCompatActivity {
                     .add(R.id.container, new MainMenuFragment(), TAG_FRAGMENT)
                     .commit();
         }
+        ship = R.drawable.ship0;
     }
 
+    //Fagmento de Juego
     public void startGame() {
         // Navigate the the game fragment, which makes the start automatically
         Bundle bundle = new Bundle();
@@ -37,6 +39,7 @@ public class ScaffoldActivity extends AppCompatActivity {
         points= 0;
     }
 
+    //Fagmento de acabar partida
     public void finishGame(int p){
         points=p;
         Bundle bundle = new Bundle();
