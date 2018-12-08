@@ -20,6 +20,10 @@ public class BlackCounter : MonoBehaviour {
         {
             gameManager.AddPoints();
         }
+        else if(other.gameObject.tag == "White")
+        {
+            gameManager.removeLife();
+        }
         Destroy(other.gameObject);
     }
 }

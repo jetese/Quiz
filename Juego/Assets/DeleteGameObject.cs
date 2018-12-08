@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class DeleteGameObject : MonoBehaviour {
 
-	// Use this for initialization
+    // Use this for initialization
+    GameManager gm;
 	void Start () {
-		
+        gm = FindObjectOfType<GameManager>();
 	}
 	
 	// Update is called once per frame
@@ -16,6 +17,7 @@ public class DeleteGameObject : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        gm.removeLife();
         Destroy(other.gameObject);
     }
 
