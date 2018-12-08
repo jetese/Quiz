@@ -2,16 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
     private int points;
     private int lives;
     public Text pointText;
     public Text lifeText;
+
+    public GameObject GUI;
+    public GameObject GameOver;
+    public Text finalPunt;
+
+    private bool playing = true;
 	// Use this for initialization
 	void Start () {
         points = 0;
         lives = 5;
+        GameOver.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -21,20 +29,39 @@ public class GameManager : MonoBehaviour {
 
     public void AddPoints()
     {
-        points += 1;
-        pointText.text = "Puntuacion: " + points;
+        if (playing)
+        {
+            points += 1;
+            pointText.text = "Puntuacion: " + points;
+        }
     }
 
     public void removeLife()
     {
-        lives--;
-        if (lives > -1)
+        if (playing)
         {
-            lifeText.text = "Vidas: " + lives;
+            lives--;
+            if (lives > -1)
+            {
+                lifeText.text = "Vidas: " + lives;
+            }
+            else
+            {
+                GameOver.SetActive(true);
+                GUI.SetActive(false);
+                finalPunt.text = "Puntuacion: " + points;
+                playing = false;
+            }
         }
-        else
-        {
-            lifeText.text = "Game Over";
-        }
+    }
+
+    public void Retry()
+    {
+        SceneManager.LoadScene("Game");
+    }
+
+    public void Menu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }
