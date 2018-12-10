@@ -82,7 +82,6 @@ D:\Git\Quiz\Juego\Temp\bin\Debug\UnityEngine.WindModule.dll
 D:\Git\Quiz\Juego\Temp\bin\Debug\UnityEngine.XRModule.dll
 D:\Git\Quiz\Juego\Temp\bin\Debug\UnityScript.dll
 D:\Git\Quiz\Juego\Temp\bin\Debug\UnityScript.Lang.dll
-D:\Git\Quiz\Juego\Temp\bin\Debug\Vuforia.UnityExtensions.dll
 D:\Git\Quiz\Juego\Temp\bin\Debug\UnityEngine.ClusterInputModule.dll
 D:\Git\Quiz\Juego\Temp\bin\Debug\UnityEngine.ClusterRendererModule.dll
 D:\Git\Quiz\Juego\Temp\bin\Debug\Unity.Cecil.dll
@@ -159,7 +158,6 @@ D:\Git\Quiz\Juego\Temp\bin\Debug\UnityEngine.XRModule.xml
 D:\Git\Quiz\Juego\Temp\bin\Debug\UnityEngine.UI.xml
 D:\Git\Quiz\Juego\Temp\bin\Debug\UnityEngine.Timeline.xml
 D:\Git\Quiz\Juego\Temp\bin\Debug\UnityEngine.Networking.xml
-D:\Git\Quiz\Juego\Temp\bin\Debug\Vuforia.UnityExtensions.xml
 D:\Git\Quiz\Juego\Temp\bin\Debug\UnityEngine.GoogleAudioSpatializer.xml
 D:\Git\Quiz\Juego\Temp\bin\Debug\UnityEngine.HoloLens.xml
 D:\Git\Quiz\Juego\Temp\bin\Debug\UnityEngine.SpatialTracking.xml
@@ -170,3 +168,5 @@ D:\Git\Quiz\Juego\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
 D:\Git\Quiz\Juego\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 D:\Git\Quiz\Juego\obj\Debug\Assembly-CSharp.dll
 D:\Git\Quiz\Juego\obj\Debug\Assembly-CSharp.pdb
+D:\Git\Quiz\Juego\Temp\bin\Debug\Newtonsoft.Json.dll
+D:\Git\Quiz\Juego\Temp\bin\Debug\Newtonsoft.Json.xml

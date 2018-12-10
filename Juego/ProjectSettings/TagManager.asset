@@ -7,6 +7,8 @@ TagManager:
   - White
   - Black
   - GUI
+  - name
+  - punt
   layers:
   - Default
   - TransparentFX

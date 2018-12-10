@@ -14,12 +14,18 @@ public class GameManager : MonoBehaviour {
     public GameObject GameOver;
     public Text finalPunt;
 
+    public GameObject insertName;
+    public GameObject textarea;
+
+    bool retryGame = false;
+
     private bool playing = true;
 	// Use this for initialization
 	void Start () {
         points = 0;
         lives = 5;
         GameOver.SetActive(false);
+        insertName.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -52,6 +58,27 @@ public class GameManager : MonoBehaviour {
                 finalPunt.text = "Puntuacion: " + points;
                 playing = false;
             }
+        }
+    }
+
+    public void Finish(bool retry)
+    {
+        GameOver.SetActive(false);
+        insertName.SetActive(true);
+        retryGame = retry;
+    }
+
+    public void InsertPunt()
+    {
+        string name = textarea.GetComponent<InputField>().text;
+        GetComponent<Leaderboard>().AddPunt(points, name);
+        if (retryGame)
+        {
+            Retry();
+        }
+        else
+        {
+            Menu();
         }
     }
 

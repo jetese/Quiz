@@ -18,6 +18,6 @@ public class AcelerometerInput : MonoBehaviour
         dir.z = Input.acceleration.x;
         //float eulerRotationZ = transform.rotation.eulerAngles.z;
         
-        transform.Rotate(0, 0, -Input.acceleration.x * 5f);
+        transform.Rotate(0, 0, -Input.acceleration.x * 8f);
     }
 }
