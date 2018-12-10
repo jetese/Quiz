@@ -36,6 +36,7 @@ public class Leaderboard : MonoBehaviour {
             string data = File.ReadAllText(path);
             punts = Newtonsoft.Json.JsonConvert.DeserializeObject<List<SinglePunt>>(data);            
         }
+
     }
 
     public void SerializeObj()
@@ -86,6 +87,7 @@ public class Leaderboard : MonoBehaviour {
 
     private void AddSort(SinglePunt p)
     {
+
         int points = p.punt;
         bool found = false;
         int i = 0;
@@ -109,6 +111,14 @@ public class Leaderboard : MonoBehaviour {
         {
             punts.Add(p);
         }
+        if (punts.Count > 10)
+        {
+            for(int j = punts.Count; j>10; j--)
+            {
+                punts.RemoveAt(j - 1);
+            }
+        }
+        
 
     }
 	
